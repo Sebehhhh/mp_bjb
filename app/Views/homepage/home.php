@@ -15,22 +15,53 @@
             </div>
         </div>
         <!-- Form Pencarian End -->
-        <div class="row g-5 align-items-center">
-            <div class="col-md-12 col-lg-7">
-                <h4 class="mb-3 text-light">Welcome To</h4>
-                <h1 class="mb-5 display-3 text-light">Banjarbaru Ramadhan Festival 2024</h1>
+        <!-- Card kecil -->
+        <div class="row justify-content-center align-items-center">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 d-flex justify-content-between">
+                <div class="col-md-3">
+                </div>
+                <div class="col-md-2 mx-2">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="bi bi-calendar-date fs-2 text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mx-2">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="bi bi-chat-left-dots fs-2 text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 mx-2">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="bi bi-geo-alt fs-2 text-primary"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                </div>
             </div>
+            <div class="col-md-3"></div>
         </div>
+        <!-- Card kecil End -->
+
     </div>
 </div>
+
+
+
 <!-- Hero End -->
 
 <!-- Food Start-->
 <div class="container-fluid vesitable py-1">
     <div class="container py-1">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h3 class="mb-0"><b>Exhebitor: Pasar Wadai Juara</b></h3>
-            <a href="<?= base_url('/food'); ?>" class="btn btn-primary">View All</a> <!-- Tautan View All -->
+            <h5 class="mb-0"><b>Exhebitor: Pasar Wadai Juara</b></h5>
+            <a href="<?= base_url('/allProducts'); ?>" class="btn btn-primary">View All</a> <!-- Tautan View All -->
         </div>
         <div class="owl-carousel vegetable-carousel justify-content-center">
             <?php for ($i = 0; $i < 8; $i++) { ?>
@@ -45,7 +76,7 @@
                                 <h4><b class="text-light">Parsely</b></h4>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p class="mb-0 text-light">Author: Wilda Salsabila</p>
-                                    <p class="mb-0 mt-0 text-light">Date: 25 Februari 2024</p>
+                                    <!-- <p class="mb-0 mt-0 text-light">Date: 25 Februari 2024</p> -->
                                 </div>
                             </div>
                         </div>
@@ -59,7 +90,10 @@
 <!-- News Start-->
 <div class="container-fluid vesitable py-1">
     <div class="container py-1">
-        <h3 class="mb-5"><b>Berita</b></h3>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0"><b>Berita</b></h5>
+            <a href="<?= base_url('/allProducts'); ?>" class="btn btn-primary">View All</a> <!-- Tautan View All -->
+        </div>
         <div class="owl-carousel vegetable-carousel justify-content-center">
             <?php for ($i = 0; $i < 8; $i++) { ?>
                 <div class="item">
@@ -73,7 +107,7 @@
                                 <h4><b class="text-light">Parsely</b></h4>
                                 <div class="d-flex justify-content-between flex-lg-wrap">
                                     <p class="mb-0 text-light">Author: Wilda Salsabila</p>
-                                    <p class="mb-0 mt-0 text-light">Date: 25 Februari 2024</p>
+                                    <!-- <p class="mb-0 mt-0 text-light">Date: 25 Februari 2024</p> -->
                                 </div>
                             </div>
                         </div>

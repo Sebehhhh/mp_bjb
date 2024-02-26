@@ -74,8 +74,8 @@
                     <div class="col-lg-9">
                         <div class="row g-4 justify-content-center">
                             <div class="row">
-                                <?php for ($i = 0; $i < 9; $i++) { ?>
-                                    <div class="col-md-6 col-lg-6 col-xl-4">
+                                <?php for ($i = 0; $i < 12; $i++) { ?>
+                                    <div class="col-md-6 col-lg-6 col-xl-3 mb-2">
                                         <div class="rounded position-relative fruite-item">
                                             <div class="fruite-img">
                                                 <img src="<?= base_url('asset/img/food.jpg'); ?>" class="img-fluid w-100 rounded-top" alt="">

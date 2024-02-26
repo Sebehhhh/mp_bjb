@@ -219,7 +219,18 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-bottom-left-radius: 50% 20px;
+    border-bottom-right-radius: 50% 20px;
 }
+
+@media (max-width: 768px) {
+    .hero-header {
+        border-bottom-left-radius: 50% 50px;
+        border-bottom-right-radius: 50% 50px;
+    }
+}
+
+
 
 .carousel-item {
     position: relative;
@@ -299,6 +310,11 @@
 }
 /*** featurs End ***/
 
+@media (max-width: 768px) {
+    .card {
+        min-width: 75px; /* Sesuaikan dengan ukuran yang diinginkan */
+    }
+}
 
 /*** service Start ***/
 .service .service-item .service-content {
