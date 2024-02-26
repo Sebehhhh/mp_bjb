@@ -5,6 +5,13 @@
 <!-- Hero Start -->
 <div class="container-fluid py-5 mb-5 hero-header">
     <div class="container py-5">
+        <!-- Logo -->
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-2 text-center">
+                <img src="<?= base_url('asset/img/logo.jpg'); ?>" alt="Logo" class="img-fluid rounded" height="1200px" width="160">
+
+            </div>
+        </div>
         <!-- Form Pencarian -->
         <div class="row justify-content-center mb-3">
             <div class="col-md-6">
