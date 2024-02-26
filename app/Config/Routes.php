@@ -8,8 +8,10 @@ use CodeIgniter\Router\RouteCollection;
 // HOMEPAGE
 $routes->get('/', 'Home::index');
 $routes->get('/calendar', 'Home::calendar');
+$routes->get('/seller', 'Home::seller');
 $routes->get('/about', 'Home::about');
-$routes->get('/detail', 'Home::detail');
+$routes->get('/allProducts', 'Home::allProducts');
+$routes->get('/news', 'Home::news');
 
 // AUTH
 $routes->get('login', 'AuthController::index');

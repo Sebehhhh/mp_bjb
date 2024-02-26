@@ -193,20 +193,23 @@
         <h1 class="mb-0">News</h1>
         <div class="owl-carousel vegetable-carousel justify-content-center">
             <?php for ($i = 0; $i < 8; $i++) { ?>
-                <div class="border border-primary rounded position-relative vesitable-item">
-                    <div class="vesitable-img square-menu">
-                        <img src="<?= base_url('asset/img/news.jpg'); ?>" alt="">
-                    </div>
-                    <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">News</div>
-                    <div class="p-4 rounded-bottom">
-                        <h4><b class="text-light">Parsely</b></h4>
-                        <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
-                        <div class="d-flex justify-content-between flex-lg-wrap">
-                            <p class="mb-0 text-light">Author: Wilda Salsabila</p>
-                            <p class="mb-0 mt-0 text-light">Date: 25 Februari 2024</p>
+                <a href="<?= base_url('/news'); ?>" class="text-decoration-none">
+                    <div class="border border-primary rounded position-relative vesitable-item">
+                        <div class="vesitable-img square-menu">
+                            <img src="<?= base_url('asset/img/news.jpg'); ?>" alt="">
+                        </div>
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">News</div>
+                        <div class="p-4 rounded-bottom">
+                            <h4><b class="text-light">Parsely</b></h4>
+                            <p class="text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit sed do eiusmod te incididunt</p>
+                            <div class="d-flex justify-content-between flex-lg-wrap">
+                                <p class="mb-0 text-light">Author: Wilda Salsabila</p>
+                                <p class="mb-0 mt-0 text-light">Date: 25 Februari 2024</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
+
             <?php } ?>
         </div>
     </div>

@@ -58,24 +58,11 @@
                         <div class="row g-4">
                             <div class="col-lg-12">
                                 <div class="mb-3">
-                                    <h4 class="mt-3">Categories</h4>
-                                    <ul class="list-unstyled fruite-categorie">
-                                        <li>
-                                            <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Food</a>
-                                                <span>(3)</span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="mb-3">
                                     <h4>Seller</h4>
                                     <ul class="list-unstyled fruite-categorie">
                                         <li>
                                             <div class="d-flex justify-content-between fruite-name">
-                                                <a href="#"><i class="fas fa-apple-alt me-2"></i>Wilda Salsabila</a>
+                                                <a href="<?= base_url('seller'); ?>"><i class="fas fa-apple-alt me-2"></i>Wilda Salsabila</a>
                                                 <span>(3)</span>
                                             </div>
                                         </li>

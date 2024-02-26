@@ -11,6 +11,7 @@
              <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                  <div class="navbar-nav mx-auto">
                      <a href="<?= base_url('/'); ?>" class="nav-item nav-link <?= ($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/homepage') ? 'active' : ''; ?>">Home</a>
+                     <a href="<?= base_url('/allProducts'); ?>" class="nav-item nav-link <?= ($_SERVER['REQUEST_URI'] == '/allProducts' || $_SERVER['REQUEST_URI'] == '/allProducts') ? 'active' : ''; ?>">All Products</a>
                      <a href="<?= base_url('/calendar'); ?>" class="nav-item nav-link <?= ($_SERVER['REQUEST_URI'] == '/calendar') ? 'active' : ''; ?>">Calendar</a>
                      <a href="<?= base_url('/about'); ?>" class="nav-item nav-link <?= ($_SERVER['REQUEST_URI'] == '/about') ? 'active' : ''; ?>">About Us</a>
                  </div>

@@ -19,8 +19,18 @@ class Home extends BaseController
         return view('homepage/about');
     }
 
-    public function detail()
+    public function allProducts()
     {
-        return view('homepage/detail');
+        return view('homepage/allProducts');
+    }
+
+    public function seller()
+    {
+        return view('homepage/seller');
+    }
+
+    public function news()
+    {
+        return view('homepage/news');
     }
 }
