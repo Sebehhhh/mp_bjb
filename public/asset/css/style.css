@@ -315,7 +315,9 @@
 
 .vesitable-item {
     position: relative;
+    /* transform: scale(0.5);  */
 }
+
 
 .vesitable-item .p-4 {
     background-image: url('../img/bg-card.jpg'); /* Ganti path_to_your_image dengan path atau URL gambar yang Anda inginkan */
@@ -381,6 +383,7 @@
 
 
 /*** vesitable Start ***/
+
 .vesitable .vesitable-item {
     height: 100%;
     transition: 0.5s;
