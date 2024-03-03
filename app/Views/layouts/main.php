@@ -11,6 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <link rel="shortcut icon" href="<?= base_url('assets/images/favicon.ico') ?>">
+    <script src="https://kit.fontawesome.com/fd9be5d8ef.js" crossorigin="anonymous"></script>
 
     <!--Morris Chart CSS -->
     <link href="<?= base_url('assets/plugins/fullcalendar/vanillaCalendar.css') ?>" rel="stylesheet" type="text/css" />
@@ -26,6 +27,7 @@
     <link href="<?= base_url('assets/css/bootstrap-material-design.min.css') ?>" rel="stylesheet" type="text/css">
     <link href="<?= base_url('assets/css/icons.css') ?>" rel="stylesheet" type="text/css">
     <link href="<?= base_url('assets/css/style.css') ?>" rel="stylesheet" type="text/css">
+
 
 
 </head>
@@ -56,6 +58,42 @@
 
     <?= $this->include('layouts/partials/panel_footer') ?>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if (session()->has('alert')) : ?>
+        <script>
+            Swal.fire({
+                icon: '<?= session('alert.type') ?>',
+                title: '<?= session('alert.title') ?>',
+                text: '<?= session('alert.message') ?>',
+            });
+        </script>
+    <?php endif; ?>
+
+    <script>
+        // Add event listener for delete buttons
+        document.querySelectorAll('.delete-category').forEach(button => {
+            button.addEventListener('click', function() {
+                // Get category ID
+                const categoryId = this.getAttribute('data-id');
+
+                // Show Sweet Alert confirmation
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to delete route
+                        window.location.href = '<?= base_url("panel/cat_news/delete/") ?>' + categoryId;
+                    }
+                });
+            });
+        });
+    </script>
 
     <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/popper.min.js') ?>"></script>
