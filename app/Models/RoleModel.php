@@ -4,20 +4,13 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class User extends Model
+class RoleModel extends Model
 {
-    protected $table = 'user';
+    protected $table = 'role';
     protected $primaryKey = 'id';
     protected $useSoftDeletes   = true;
     protected $allowedFields = [
-        'role_id',
         'name',
-        'username',
-        'email',
-        'password',
-        'alamat',
-        'telp',
-        'photo',
         'created_at',
         'updated_at',
         'deleted_at',

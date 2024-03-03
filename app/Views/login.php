@@ -31,14 +31,14 @@
                 <diV class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <img src="assets/images/extra.png" alt="" class="img-fluid">
+                            <img src="<?= base_url('assets/images/extra.png'); ?>" alt="" class="img-fluid">
                         </div>
                         <div class="col-md-6">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="text-center pt-3">
                                         <a href="index.html">
-                                            <img src="assets/images/logo-h-lg.png" alt="logo" height="22" />
+                                            <img src="<?= base_url('assets/images/logo-h-lg.png'); ?>" alt="logo" height="22" />
                                         </a>
                                     </div>
                                     <div class="px-3 pb-3">
@@ -56,14 +56,6 @@
                                                 </div>
                                             </div>
 
-                                            <!-- <div class="form-group row">
-                                                <div class="col-12">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                        <label class="custom-control-label" for="customCheck1">Remember me</label>
-                                                    </div>
-                                                </div>
-                                            </div> -->
 
                                             <div class="form-group text-right row m-t-20">
                                                 <div class="col-12">
@@ -72,11 +64,8 @@
                                             </div>
 
                                             <div class="form-group m-t-10 mb-0 row">
-                                                <!-- <div class="col-sm-7 m-t-20">
-                                                    <a href="pages-recoverpw.html" class="text-muted"><i class="mdi mdi-lock"></i> Forgot your password ?</a>
-                                                </div> -->
                                                 <div class="col-sm-5 m-t-20">
-                                                    <a href="pages-register.html" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account ?</a>
+                                                    <a href="#" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account ?</a>
                                                 </div>
                                             </div>
                                         </form>
@@ -94,7 +83,16 @@
     </div>
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if (session()->has('alert')) : ?>
+        <script>
+            Swal.fire({
+                icon: '<?= session('alert.type') ?>',
+                title: '<?= session('alert.title') ?>',
+                text: '<?= session('alert.message') ?>',
+            });
+        </script>
+    <?php endif; ?>
 
     <!-- jQuery  -->
     <script src="<?= base_url('assets/js/jquery.min.js'); ?>"></script>
