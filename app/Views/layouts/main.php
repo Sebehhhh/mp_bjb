@@ -147,6 +147,32 @@
         });
     </script>
 
+    <script>
+        // Add event listener for delete buttons
+        document.querySelectorAll('.delete-seller').forEach(button => {
+            button.addEventListener('click', function() {
+                // Get seller ID
+                const sellerId = this.getAttribute('data-id');
+
+                // Show Sweet Alert confirmation
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        // Redirect to delete route for seller
+                        window.location.href = '<?= base_url("panel/seller/delete/") ?>' + sellerId;
+                    }
+                });
+            });
+        });
+    </script>
+
 
     <script src="<?= base_url('assets/js/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/popper.min.js') ?>"></script>

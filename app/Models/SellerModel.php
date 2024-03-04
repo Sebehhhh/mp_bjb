@@ -4,13 +4,15 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class RoleModel extends Model
+class SellerModel extends Model
 {
-    protected $table = 'role';
+    protected $table = 'seller';
     protected $primaryKey = 'id';
     protected $useSoftDeletes   = true;
     protected $allowedFields = [
         'name',
+        'picture',
+        'description',
         'created_at',
         'updated_at',
         'deleted_at',

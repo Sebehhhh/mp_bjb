@@ -38,3 +38,9 @@ $routes->get('panel/cat_product', 'CatProductController::index');
 $routes->post('panel/cat_product/add', 'CatProductController::store');
 $routes->post('panel/cat_product/update/(:num)', 'CatProductController::update/$1');
 $routes->get('panel/cat_product/delete/(:num)', 'CatProductController::delete/$1');
+
+// PRODUCT CATEGORY
+$routes->get('panel/seller', 'SellerController::index');
+$routes->post('panel/seller/add', 'SellerController::store');
+$routes->post('panel/seller/update/(:num)', 'SellerController::update/$1');
+$routes->get('panel/seller/delete/(:num)', 'SellerController::delete/$1');

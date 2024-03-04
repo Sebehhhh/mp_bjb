@@ -35,6 +35,15 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
+                        <?php if (session()->has('errors')) : ?>
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    <?php foreach (session('errors') as $error) : ?>
+                                        <li><?= esc($error) ?></li>
+                                    <?php endforeach ?>
+                                </ul>
+                            </div>
+                        <?php endif ?>
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover">
                                 <thead>

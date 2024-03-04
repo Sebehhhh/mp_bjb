@@ -16,7 +16,7 @@
                             <ul>
                                 <li><a href="<?= base_url('panel/cat_news'); ?>">News category</a></li>
                                 <li><a href="<?= base_url('panel/cat_product'); ?>">Product Category</a></li>
-                                <li><a href="">Seller</a></li>
+                                <li><a href="<?= base_url('panel/seller'); ?>">Seller</a></li>
                             </ul>
                         </li>
                     </ul>

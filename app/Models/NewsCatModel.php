@@ -9,5 +9,5 @@ class NewsCatModel extends Model
     protected $table            = 'cat_news';
     protected $primaryKey       = 'id';
     protected $useSoftDeletes   = true;
-    protected $allowedFields    = ['name', 'created_at', 'updated_at', 'deleted_at', 'created_by', 'updated_by', 'deleted_by'];
+    protected $allowedFields    = ['name', 'created_at', 'updated_at', 'deleted_at', 'created_by', 'updated_by'];
 }
