@@ -11,10 +11,10 @@
                     <div class="btn-group m-0 pull-right">
                         <ol class="breadcrumb hide-phone p-0 m-0">
                             <li class="breadcrumb-item"><a href="#">Marketplace</a></li>
-                            <li class="breadcrumb-item active">News Category</li>
+                            <li class="breadcrumb-item active">Product Categories</li>
                         </ol>
                     </div>
-                    <h4>News Category</h4>
+                    <h4>Product Categories</h4>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <!-- Tabel Data  -->
+        <!-- Table Data -->
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -65,14 +65,14 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <!-- Form edit data -->
-                                                        <form action="<?= base_url('panel/cat_news/update/' . $category['id']); ?>" method="post">
+                                                        <!-- Edit data form -->
+                                                        <form action="<?= base_url('panel/cat_product/update/' . $category['id']); ?>" method="post">
                                                             <div class="form-group">
                                                                 <label for="name">Name <span class="text-danger">*</span></label>
                                                                 <input type="text" class="form-control" name="name" value="<?= $category['name'] ?>" required>
                                                             </div>
 
-                                                            <!-- Tambahkan input untuk kolom-kolom lainnya jika diperlukan -->
+                                                            <!-- Add inputs for other columns if needed -->
                                                             <button type="submit" class="btn btn-primary">Update</button>
                                                         </form>
                                                     </div>
@@ -102,13 +102,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Form tambah data -->
-                <form action="<?= base_url('panel/cat_news/add'); ?>" method="post">
+                <!-- Add data form -->
+                <form action="<?= base_url('panel/cat_product/add'); ?>" method="post">
                     <div class="form-group">
                         <label for="name">Name <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" name="name" required>
                     </div>
-                    <!-- Tambahkan input untuk kolom-kolom lainnya jika diperlukan -->
+                    <!-- Add inputs for other columns if needed -->
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
             </div>

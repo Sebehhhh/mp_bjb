@@ -12,6 +12,7 @@
     spinner(0);
 
 
+
     // Fixed Navbar
     $(window).scroll(function () {
         if ($(window).width() < 992) {

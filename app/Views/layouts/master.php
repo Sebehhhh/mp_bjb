@@ -48,6 +48,17 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-secondary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <?php if (session()->has('alert')) : ?>
+        <script>
+            Swal.fire({
+                icon: '<?= session('alert.type') ?>',
+                title: '<?= session('alert.title') ?>',
+                text: '<?= session('alert.message') ?>',
+            });
+        </script>
+    <?php endif; ?> -->
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
@@ -57,17 +68,6 @@
             calendar.render();
         });
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <?php if (session()->has('alert')) : ?>
-        <script>
-            Swal.fire({
-                icon: '<?= session('alert.type') ?>',
-                title: '<?= session('alert.title') ?>',
-                text: '<?= session('alert.message') ?>',
-            });
-        </script>
-    <?php endif; ?>
 
     <!-- JavaScript Libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

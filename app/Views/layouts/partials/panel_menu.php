@@ -15,7 +15,7 @@
                         <li>
                             <ul>
                                 <li><a href="<?= base_url('panel/cat_news'); ?>">News category</a></li>
-                                <li><a href="">Product Category</a></li>
+                                <li><a href="<?= base_url('panel/cat_product'); ?>">Product Category</a></li>
                                 <li><a href="">Seller</a></li>
                             </ul>
                         </li>
@@ -23,11 +23,14 @@
                 </li>
 
                 <li class="has-submenu ">
-                    <a href=""><i class="mdi mdi-calendar-clock"></i>Users</a>
+                    <a href="<?= base_url('panel/users'); ?>"><i class="mdi mdi-account-box-outline"></i>Users</a>
+                </li>
+                <li class="has-submenu ">
+                    <a href="<?= base_url('panel/news'); ?>"><i class="mdi mdi-newspaper"></i>News</a>
                 </li>
 
                 <li class="has-submenu ">
-                    <a href=""><i class="mdi mdi-calendar-clock"></i>Products</a>
+                    <a href=""><i class="mdi mdi-food"></i>Products</a>
                 </li>
 
             </ul><!-- End navigation menu -->

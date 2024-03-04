@@ -3,13 +3,13 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\NewsCatModel;
+use App\Models\ProductCatModel; // Adjusted model namespace
 
-class CatNewsController extends BaseController
+class CatProductController extends BaseController // Adjusted class name
 {
     private function setFlashAlert($type, $title, $message)
     {
-        // Set Sweet Alert menggunakan session flashdata
+        // Set Sweet Alert using session flashdata
         session()->setFlashdata('alert', [
             'type' => $type,
             'title' => $title,
@@ -19,25 +19,25 @@ class CatNewsController extends BaseController
 
     public function index()
     {
-        // Periksa sesi logged_in
+        // Check logged_in session
         if (!session()->get('logged_in')) {
             return view('errors/html/error_401');
         }
 
-        // Jika sesi logged_in true, ambil data dari model dan tampilkan ke view
-        $newsCatModel = new NewsCatModel();
-        $data['categories'] = $newsCatModel->findAll();
-        return view('catnews/index', $data);
+        // If logged_in session is true, retrieve data from model and pass to view
+        $productCatModel = new ProductCatModel(); // Adjusted model
+        $data['categories'] = $productCatModel->findAll();
+        return view('catproduct/index', $data); // Adjusted view name
     }
 
     public function store()
     {
-        // Periksa sesi logged_in
+        // Check logged_in session
         if (!session()->get('logged_in')) {
             return view('errors/html/error_401');
         }
 
-        // Validasi data input
+        // Validate input data
         $validation = \Config\Services::validation();
         $validation->setRules([
             'name' => 'required'
@@ -47,32 +47,31 @@ class CatNewsController extends BaseController
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
 
-        // Ambil data dari input
+        // Retrieve input data
         $name = $this->request->getPost('name');
-        $createdBy = session()->get('user_id'); // Ambil user_id dari sesi
+        $createdBy = session()->get('user_id'); // Retrieve user_id from session
 
-        // Simpan data ke dalam database menggunakan model
-        $newsCatModel = new NewsCatModel();
-        $newsCatModel->insert([
+        // Save data into the database using the model
+        $productCatModel = new ProductCatModel(); // Adjusted model
+        $productCatModel->insert([
             'name' => $name,
-            'created_by' => $createdBy // Set created_by dengan user_id dari sesi
+            'created_by' => $createdBy // Set created_by with user_id from session
         ]);
 
-        // Set pesan alert berhasil
+        // Set success alert message
         $this->setFlashAlert('success', 'Success', 'Category has been added successfully.');
 
         return redirect()->back();
     }
 
-
     public function update($id)
     {
-        // Periksa sesi logged_in
+        // Check logged_in session
         if (!session()->get('logged_in')) {
             return view('errors/html/error_401');
         }
 
-        // Validasi data input
+        // Validate input data
         $validation = \Config\Services::validation();
         $validation->setRules([
             'name' => 'required'
@@ -82,44 +81,43 @@ class CatNewsController extends BaseController
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
 
-        // Ambil data dari input
+        // Retrieve input data
         $name = $this->request->getPost('name');
-        $updatedBy = session()->get('user_id'); // Ambil user_id dari sesi
+        $updatedBy = session()->get('user_id'); // Retrieve user_id from session
 
-        // Simpan data ke dalam database menggunakan model
-        $newsCatModel = new NewsCatModel();
-        $newsCatModel->update($id, [
+        // Update data in the database using the model
+        $productCatModel = new ProductCatModel(); // Adjusted model
+        $productCatModel->update($id, [
             'name' => $name,
-            'updated_by' => $updatedBy // Set updated_by dengan user_id dari sesi
+            'updated_by' => $updatedBy // Set updated_by with user_id from session
         ]);
 
-        // Set pesan alert berhasil
+        // Set success alert message
         $this->setFlashAlert('success', 'Success', 'Category has been updated successfully.');
 
         return redirect()->back();
     }
 
-
     public function delete($id)
     {
-        // Periksa sesi logged_in
+        // Check logged_in session
         if (!session()->get('logged_in')) {
             return view('errors/html/error_401');
         }
 
-        // Cek apakah kategori dengan ID yang diberikan ada dalam database
-        $newsCatModel = new NewsCatModel();
-        $category = $newsCatModel->find($id);
+        // Check if the category with the given ID exists in the database
+        $productCatModel = new ProductCatModel(); // Adjusted model
+        $category = $productCatModel->find($id);
 
-        // Jika kategori tidak ditemukan, tampilkan pesan error atau redirect ke halaman yang sesuai
+        // If category not found, show error message or redirect to appropriate page
         if (!$category) {
             return redirect()->back()->with('error', 'Category not found.');
         }
 
-        // Hapus kategori dari database
-        $newsCatModel->delete($id);
+        // Delete category from the database
+        $productCatModel->delete($id);
 
-        // Set pesan alert berhasil
+        // Set success alert message
         $this->setFlashAlert('success', 'Success', 'Category has been deleted successfully.');
 
         return redirect()->back();

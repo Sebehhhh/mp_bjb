@@ -33,15 +33,18 @@ class AuthController extends BaseController
         $data = $model->where('email', $email)->first();
 
         if ($data) {
-            $pass = $data['password'];
-            if ($pass == $password) {
+            // Mengenkripsi kata sandi yang dimasukkan oleh pengguna untuk membandingkannya dengan kata sandi terenkripsi di database
+            $hashedPassword = $data['password'];
+            $isPasswordCorrect = password_verify($password, $hashedPassword);
+            // dd($isPasswordCorrect);
+            if ($isPasswordCorrect) {
                 // Mendapatkan role name berdasarkan role_id
                 $roleModel = new RoleModel();
-                $roleData = $roleModel->find($data['role_id']); // Asumsikan kolom role_id ada di tabel users
+                $roleData = $roleModel->find($data['role_id']);
 
                 $ses_data = [
                     'user_id'   => $data['id'],
-                    'role'      => $roleData['name'], // Menambahkan session role
+                    'role'      => $roleData['name'],
                     'logged_in' => TRUE
                 ];
                 $session->set($ses_data);
@@ -56,7 +59,6 @@ class AuthController extends BaseController
             return redirect()->back();
         }
     }
-
 
     public function logout()
     {
