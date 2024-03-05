@@ -53,11 +53,8 @@
         dots: true,
         loop: true,
         margin: 25,
-        nav : true,
-        navText : [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
-        ],
+        nav : false,
+        navText : false,
         responsiveClass: true,
         responsive: {
             0:{
@@ -87,11 +84,8 @@
         dots: true,
         loop: true,
         margin: 25,
-        nav : true,
-        navText : [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
-        ],
+        nav : false,
+        navText : false,
         responsiveClass: true,
         responsive: {
             0:{
