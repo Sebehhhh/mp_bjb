@@ -10,4 +10,9 @@ class NewsCatModel extends Model
     protected $primaryKey       = 'id';
     protected $useSoftDeletes   = true;
     protected $allowedFields    = ['name', 'created_at', 'updated_at', 'deleted_at', 'created_by', 'updated_by'];
+
+    public function news()
+    {
+        return $this->hasMany('App\Models\NewsModel', 'cat_id');
+    }
 }

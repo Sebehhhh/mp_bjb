@@ -39,14 +39,20 @@ $routes->post('panel/cat_product/add', 'CatProductController::store');
 $routes->post('panel/cat_product/update/(:num)', 'CatProductController::update/$1');
 $routes->get('panel/cat_product/delete/(:num)', 'CatProductController::delete/$1');
 
-// PRODUCT CATEGORY
+// SELLER
 $routes->get('panel/seller', 'SellerController::index');
 $routes->post('panel/seller/add', 'SellerController::store');
 $routes->post('panel/seller/update/(:num)', 'SellerController::update/$1');
 $routes->get('panel/seller/delete/(:num)', 'SellerController::delete/$1');
 
-// PRODUCT CATEGORY
+// NEWS
 $routes->get('panel/news', 'NewsController::index');
 $routes->post('panel/news/add', 'NewsController::store');
 $routes->post('panel/news/update/(:num)', 'NewsController::update/$1');
 $routes->get('panel/news/delete/(:num)', 'NewsController::delete/$1');
+
+// PRODUCT
+$routes->get('panel/product', 'ProductController::index');
+$routes->post('panel/product/add', 'ProductController::store');
+$routes->post('panel/product/update/(:num)', 'ProductController::update/$1');
+$routes->get('panel/product/delete/(:num)', 'ProductController::delete/$1');

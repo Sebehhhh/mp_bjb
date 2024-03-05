@@ -17,4 +17,9 @@ class RoleModel extends Model
         'created_by',
         'updated_by',
     ];
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\User', 'role_id');
+    }
 }

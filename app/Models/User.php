@@ -8,7 +8,7 @@ class User extends Model
 {
     protected $table = 'user';
     protected $primaryKey = 'id';
-    protected $useSoftDeletes   = true;
+    protected $useSoftDeletes = true;
     protected $allowedFields = [
         'role_id',
         'name',
@@ -24,4 +24,10 @@ class User extends Model
         'created_by',
         'updated_by',
     ];
+
+    // Definisikan relasi dengan tabel 'role'
+    public function role()
+    {
+        return $this->belongsTo('App\Models\RoleModel', 'role_id');
+    }
 }
