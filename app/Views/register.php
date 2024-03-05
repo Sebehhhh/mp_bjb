@@ -37,7 +37,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="text-center pt-3">
-                                        <a href="#">
+                                        <a href="index.html">
                                             <img src="<?= base_url('assets/images/logo-h-lg.png'); ?>" alt="logo" height="22" />
                                         </a>
                                     </div>
@@ -51,33 +51,64 @@
                                         </div>
                                     <?php endif ?>
                                     <div class="px-3 pb-3">
-                                        <form class="form-horizontal m-t-20 mb-0" action="<?= base_url('act/login'); ?>" method="POST">
+                                        <form class="form-horizontal m-t-20 mb-0" action="<?= base_url('act/register'); ?>" method="POST">
 
                                             <div class="form-group row">
+                                                <label class="col-12 col-form-label">Name<sup style="color:red">*</sup></label>
                                                 <div class="col-12">
-                                                    <input class="form-control" name="email" type="text" required="" placeholder="Email">
+                                                    <input class="form-control" name="name" type="text" required>
                                                 </div>
                                             </div>
 
                                             <div class="form-group row">
+                                                <label class="col-12 col-form-label">Username<sup style="color:red">*</sup></label>
                                                 <div class="col-12">
-                                                    <input class="form-control" name="password" type="password" required="" placeholder="Password">
+                                                    <input class="form-control" name="username" type="text" required>
                                                 </div>
                                             </div>
 
+                                            <div class="form-group row">
+                                                <label class="col-12 col-form-label">Email<sup style="color:red">*</sup></label>
+                                                <div class="col-12">
+                                                    <input class="form-control" name="email" type="email" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-12 col-form-label">Password<sup style="color:red">*</sup></label>
+                                                <div class="col-12">
+                                                    <input class="form-control" name="password" type="password" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-12 col-form-label">Address<sup style="color:red">*</sup></label>
+                                                <div class="col-12">
+                                                    <input class="form-control" name="alamat" type="text" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-12 col-form-label">Phone<sup style="color:red">*</sup></label>
+                                                <div class="col-12">
+                                                    <input class="form-control" name="telp" type="tel" required>
+                                                </div>
+                                            </div>
 
                                             <div class="form-group text-right row m-t-20">
                                                 <div class="col-12">
-                                                    <button class="btn btn-primary btn-raised btn-block waves-effect waves-light" type="submit">Log In</button>
+                                                    <button class="btn btn-primary btn-raised btn-block waves-effect waves-light" type="submit">Register</button>
                                                 </div>
                                             </div>
 
                                             <div class="form-group m-t-10 mb-0 row">
                                                 <div class="col-sm-5 m-t-20">
-                                                    <a href="<?= base_url('register'); ?>" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account ?</a>
+                                                    <a href="<?= base_url('login'); ?>" class="text-muted"><i class="mdi mdi-login"></i> Already have an account ?</a>
                                                 </div>
                                             </div>
                                         </form>
+
+
                                     </div>
 
                                 </div>

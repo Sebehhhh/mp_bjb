@@ -67,64 +67,68 @@
 <div class="container-fluid vesitable py-1">
     <div class="container py-1">
         <div class="d-flex justify-content-between align-items-center mb-3">
-            <h5 class="mb-0"><b>Exhebitor: Pasar Wadai Juara</b></h5>
+            <h5 class="mb-0"><b>Exhibitor: Pasar Wadai Juara</b></h5>
             <a href="<?= base_url('/allProducts'); ?>" class="btn btn-primary">View All</a> <!-- Tautan View All -->
         </div>
         <div class="owl-carousel vegetable-carousel justify-content-center">
-            <?php for ($i = 0; $i < 8; $i++) { ?>
+            <?php foreach ($products as $product) : ?>
                 <div class="item">
-                    <a href="<?= base_url('/food'); ?>" class="text-decoration-none">
+                    <a href="#" class="text-decoration-none">
                         <div class="border border-primary rounded position-relative vesitable-item">
                             <div class="vesitable-img square-menu">
-                                <img src="<?= base_url('asset/img/food.jpg'); ?>" alt="">
+                                <!-- Mengambil gambar produk dari direktori public -->
+                                <img src="<?= base_url('uploads/products/' . $product['picture']); ?>" alt="<?= $product['name']; ?>">
                             </div>
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">News</div>
+                            <!-- Gunakan class bg-primary untuk menampilkan bahwa ini adalah produk -->
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Product</div>
                             <div class="p-4 rounded-bottom">
-                                <h4><b class="text-light">Parsely</b></h4>
-                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                    <p class="mb-0 text-light">Author: Wilda Salsabila</p>
-                                    <!-- <p class="mb-0 mt-0 text-light">Date: 25 Februari 2024</p> -->
-                                </div>
+                                <h4><b class="text-light"><?= $product['name']; ?></b></h4>
+                                <p class="mb-0 text-light">Price: <?= $product['price']; ?></p>
+                                <p class="mb-0 text-light">Stock: <?= $product['stok']; ?></p>
+                                <!-- Anda bisa menambahkan informasi lainnya tentang produk di sini -->
                             </div>
                         </div>
                     </a>
                 </div>
-            <?php } ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
 <!-- Food End -->
+
 <!-- News Start-->
 <div class="container-fluid vesitable py-1">
     <div class="container py-1">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0"><b>Berita</b></h5>
-            <a href="<?= base_url('/allProducts'); ?>" class="btn btn-primary">View All</a> <!-- Tautan View All -->
+            <a href="<?= base_url('/allNews'); ?>" class="btn btn-primary">View All</a> <!-- Tautan View All -->
         </div>
         <div class="owl-carousel vegetable-carousel justify-content-center">
-            <?php for ($i = 0; $i < 8; $i++) { ?>
+            <?php foreach ($news as $newsItem) : ?>
                 <div class="item">
                     <a href="<?= base_url('/news'); ?>" class="text-decoration-none">
                         <div class="border border-primary rounded position-relative vesitable-item">
                             <div class="vesitable-img square-menu">
-                                <img src="<?= base_url('asset/img/news.jpg'); ?>" alt="">
+                                <!-- Mengambil gambar berita dari direktori public -->
+                                <img src="<?= base_url('uploads/news/' . $newsItem['picture']); ?>" alt="<?= $newsItem['title']; ?>">
                             </div>
+                            <!-- Gunakan class bg-primary untuk menampilkan bahwa ini adalah berita -->
                             <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">News</div>
                             <div class="p-4 rounded-bottom">
-                                <h4><b class="text-light">Parsely</b></h4>
-                                <div class="d-flex justify-content-between flex-lg-wrap">
-                                    <p class="mb-0 text-light">Author: Wilda Salsabila</p>
-                                    <!-- <p class="mb-0 mt-0 text-light">Date: 25 Februari 2024</p> -->
-                                </div>
+                                <h4><b class="text-light"><?= $newsItem['title']; ?></b></h4>
+                                <p class="mb-0 text-light"><?= $newsItem['content']; ?></p>
+                                <p class="mb-0 text-light">Author: <?= $newsItem['created_by']; ?></p>
+                                <!-- Anda bisa menambahkan informasi lainnya tentang berita di sini -->
                             </div>
                         </div>
                     </a>
                 </div>
-            <?php } ?>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
 <!-- News End -->
+
 
 
 <!-- Banner Section Start-->

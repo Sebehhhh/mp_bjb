@@ -14,6 +14,8 @@ $routes->get('/allProducts', 'Home::allProducts');
 $routes->get('/news', 'Home::news');
 
 // AUTH
+$routes->get('register', 'AuthController::register');
+$routes->post('act/register', 'AuthController::registering');
 $routes->get('login', 'AuthController::index');
 $routes->post('act/login', 'AuthController::login');
 $routes->get('logout', 'AuthController::logout');

@@ -67,4 +67,53 @@ class AuthController extends BaseController
         $this->setFlashAlert('success', 'Success', 'You Have Been Logged Out');
         return redirect()->to('/');
     }
+
+    public function register()
+    {
+        return view('register');
+    }
+
+    public function registering()
+    {
+        // Validasi data input
+        $validation = \Config\Services::validation();
+        $validation->setRules([
+            'name' => 'required',
+            'username' => 'required|alpha_numeric',
+            'email' => 'required|valid_email',
+            'password' => 'required|min_length[8]|regex_match[/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/]',
+            'alamat' => 'required',
+            'telp' => 'required|numeric|max_length[13]'
+        ]);
+
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
+        }
+
+        // Ambil data dari input
+        $name = $this->request->getPost('name');
+        $username = $this->request->getPost('username');
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+        $alamat = $this->request->getPost('alamat');
+        $telp = $this->request->getPost('telp');
+        $role_id = 2; // Set role_id otomatis menjadi 2 untuk pengguna yang mendaftar
+
+        // Simpan data ke dalam database menggunakan model
+        $User = new User();
+        $User->insert([
+            'name' => $name,
+            'username' => $username,
+            'email' => $email,
+            'password' => password_hash($password, PASSWORD_DEFAULT), // Encrypt password
+            'alamat' => $alamat,
+            'telp' => $telp,
+            'role_id' => $role_id, // Menyimpan role_id secara otomatis
+        ]);
+
+        // Set pesan alert berhasil
+        $this->setFlashAlert('success', 'Success', 'User has been registered successfully.');
+
+        return redirect()->to('login'); // Redirect ke halaman login setelah registrasi
+    }
 }
