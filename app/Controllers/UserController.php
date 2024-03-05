@@ -67,6 +67,7 @@ class UserController extends BaseController
             'email' => 'required|valid_email',
             'password' => 'required|min_length[8]|regex_match[/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/]',
             'alamat' => 'required',
+            'role_id' => 'required',
             'telp' => 'required|numeric|max_length[13]'
         ]);
 
@@ -120,6 +121,7 @@ class UserController extends BaseController
             'username' => 'required|alpha_numeric',
             'email' => 'required|valid_email',
             'alamat' => 'required',
+            'role_id' => 'required',
             'telp' => 'required|numeric|max_length[13]'
         ]);
 

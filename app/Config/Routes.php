@@ -44,3 +44,9 @@ $routes->get('panel/seller', 'SellerController::index');
 $routes->post('panel/seller/add', 'SellerController::store');
 $routes->post('panel/seller/update/(:num)', 'SellerController::update/$1');
 $routes->get('panel/seller/delete/(:num)', 'SellerController::delete/$1');
+
+// PRODUCT CATEGORY
+$routes->get('panel/news', 'NewsController::index');
+$routes->post('panel/news/add', 'NewsController::store');
+$routes->post('panel/news/update/(:num)', 'NewsController::update/$1');
+$routes->get('panel/news/delete/(:num)', 'NewsController::delete/$1');

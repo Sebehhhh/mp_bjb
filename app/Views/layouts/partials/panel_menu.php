@@ -30,7 +30,7 @@
                 </li>
 
                 <li class="has-submenu ">
-                    <a href=""><i class="mdi mdi-food"></i>Products</a>
+                    <a href="<?= base_url('panel/product'); ?>"><i class="mdi mdi-food"></i>Products</a>
                 </li>
 
             </ul><!-- End navigation menu -->

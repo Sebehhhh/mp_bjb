@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\SellerModel;
+use App\Models\NewsModel; // Adjusted model
 
-class SellerController extends BaseController // Adjusted class name
+class NewsController extends BaseController // Adjusted class name
 {
     private function setFlashAlert($type, $title, $message)
     {
@@ -25,9 +25,9 @@ class SellerController extends BaseController // Adjusted class name
         }
 
         // If logged_in session is true, retrieve data from model and pass to view
-        $sellerModel = new SellerModel(); // Adjusted model
-        $data['sellers'] = $sellerModel->findAll();
-        return view('seller/index', $data); // Adjusted view name
+        $newsModel = new NewsModel(); // Adjusted model
+        $data['news'] = $newsModel->findAll();
+        return view('news/index', $data); // Adjusted view name
     }
 
     public function store()
@@ -40,40 +40,39 @@ class SellerController extends BaseController // Adjusted class name
         // Validate input data
         $validation = \Config\Services::validation();
         $validation->setRules([
-            'name' => 'required',
-            'description' => 'required',
+            'title' => 'required',
+            'content' => 'required',
             'picture' => 'uploaded[picture]|max_size[picture,2048]|is_image[picture]|mime_in[picture,image/jpg,image/jpeg,image/png]'
         ]);
-
+        // dd($validation);
         if (!$validation->withRequest($this->request)->run()) {
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
 
         // Retrieve input data
-        $name = $this->request->getPost('name');
+        $title = $this->request->getPost('title');
         $picture = $this->request->getFile('picture');
-        $description = $this->request->getPost('description');
+        $content = $this->request->getPost('content');
         $createdBy = session()->get('user_id'); // Retrieve user_id from session
 
         // Move uploaded file to public directory and get its name
         $newPictureName = $picture->getRandomName();
-        $picture->move(ROOTPATH . 'public/uploads/sellers', $newPictureName);
+        $picture->move(ROOTPATH . 'public/uploads/news', $newPictureName);
 
         // Save data into the database using the model
-        $sellerModel = new SellerModel(); // Adjusted model
-        $sellerModel->insert([
-            'name' => $name,
+        $newsModel = new NewsModel(); // Adjusted model
+        $newsModel->insert([
+            'title' => $title,
             'picture' => $newPictureName, // Save only the name of the picture
-            'description' => $description, // Save the description
+            'content' => $content, // Save the content
             'created_by' => $createdBy // Set created_by with user_id from session
         ]);
 
         // Set success alert message
-        $this->setFlashAlert('success', 'Success', 'Seller has been added successfully.');
+        $this->setFlashAlert('success', 'Success', 'News has been added successfully.');
 
         return redirect()->back();
     }
-
 
     public function update($id)
     {
@@ -83,9 +82,9 @@ class SellerController extends BaseController // Adjusted class name
         }
 
         // Retrieve input data
-        $name = $this->request->getPost('name');
+        $title = $this->request->getPost('title');
         $picture = $this->request->getFile('picture');
-        $description = $this->request->getPost('description');
+        $content = $this->request->getPost('content');
         $updatedBy = session()->get('user_id'); // Retrieve user_id from session
 
         // Initialize variable to hold the new picture name
@@ -95,13 +94,13 @@ class SellerController extends BaseController // Adjusted class name
         if ($picture->isValid() && !$picture->hasMoved()) {
             // Move uploaded file to public directory and get its name
             $newPictureName = $picture->getRandomName();
-            $picture->move(ROOTPATH . 'public/uploads/sellers', $newPictureName);
+            $picture->move(ROOTPATH . 'public/uploads/news', $newPictureName);
 
             // Validate input data including the picture when a new picture is uploaded
             $validation = \Config\Services::validation();
             $validation->setRules([
-                'name' => 'required',
-                'description' => 'required',
+                'title' => 'required',
+                'content' => 'required',
                 'picture' => 'uploaded[picture]|max_size[picture,2048]|is_image[picture]|mime_in[picture,image/jpg,image/jpeg,image/png]'
             ]);
 
@@ -110,15 +109,15 @@ class SellerController extends BaseController // Adjusted class name
             }
         } else {
             // If no new picture is uploaded, keep the existing picture name
-            $sellerModel = new SellerModel(); // Adjusted model
-            $seller = $sellerModel->find($id);
-            $newPictureName = $seller['picture'];
+            $newsModel = new NewsModel(); // Adjusted model
+            $news = $newsModel->find($id);
+            $newPictureName = $news['picture'];
 
             // Validate input data except for the picture when no new picture is uploaded
             $validation = \Config\Services::validation();
             $validation->setRules([
-                'name' => 'required',
-                'description' => 'required'
+                'title' => 'required',
+                'content' => 'required'
             ]);
 
             if (!$validation->withRequest($this->request)->run()) {
@@ -127,22 +126,19 @@ class SellerController extends BaseController // Adjusted class name
         }
 
         // Update data in the database using the model
-        $sellerModel = new SellerModel(); // Adjusted model
-        $sellerModel->update($id, [
-            'name' => $name,
+        $newsModel = new NewsModel(); // Adjusted model
+        $newsModel->update($id, [
+            'title' => $title,
             'picture' => $newPictureName, // Save only the name of the picture
-            'description' => $description, // Save the description
+            'content' => $content, // Save the content
             'updated_by' => $updatedBy // Set updated_by with user_id from session
         ]);
 
         // Set success alert message
-        $this->setFlashAlert('success', 'Success', 'Seller has been updated successfully.');
+        $this->setFlashAlert('success', 'Success', 'News has been updated successfully.');
 
         return redirect()->back();
     }
-
-
-
 
 
     public function delete($id)
@@ -152,25 +148,25 @@ class SellerController extends BaseController // Adjusted class name
             return view('errors/html/error_401');
         }
 
-        // Check if the seller with the given ID exists in the database
-        $sellerModel = new SellerModel(); // Adjusted model
-        $seller = $sellerModel->find($id);
+        // Check if the news with the given ID exists in the database
+        $newsModel = new NewsModel(); // Adjusted model
+        $news = $newsModel->find($id);
 
-        // If seller not found, show error message or redirect to appropriate page
-        if (!$seller) {
-            return redirect()->back()->with('error', 'Seller not found.');
+        // If news not found, show error message or redirect to appropriate page
+        if (!$news) {
+            return redirect()->back()->with('error', 'News not found.');
         }
 
-        // Delete seller's picture from the public directory
-        if (file_exists(ROOTPATH . 'public/uploads/sellers/' . $seller['picture'])) {
-            unlink(ROOTPATH . 'public/uploads/sellers/' . $seller['picture']);
+        // Delete news's picture from the public directory
+        if (file_exists(ROOTPATH . 'public/uploads/news/' . $news['picture'])) {
+            unlink(ROOTPATH . 'public/uploads/news/' . $news['picture']);
         }
 
-        // Delete seller from the database
-        $sellerModel->delete($id);
+        // Delete news from the database
+        $newsModel->delete($id);
 
         // Set success alert message
-        $this->setFlashAlert('success', 'Success', 'Seller has been deleted successfully.');
+        $this->setFlashAlert('success', 'Success', 'News has been deleted successfully.');
 
         return redirect()->back();
     }

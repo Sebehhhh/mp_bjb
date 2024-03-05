@@ -11,10 +11,10 @@
                     <div class="btn-group m-0 pull-right">
                         <ol class="breadcrumb hide-phone p-0 m-0">
                             <li class="breadcrumb-item"><a href="#">Marketplace</a></li>
-                            <li class="breadcrumb-item active">Sellers</li>
+                            <li class="breadcrumb-item active">News Category</li>
                         </ol>
                     </div>
-                    <h4>Sellers</h4>
+                    <h4>News Category</h4>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
             </div>
         </div>
 
-        <!-- Table Data -->
+        <!-- Table Data  -->
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -49,66 +49,63 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Name</th>
+                                        <th>Title</th>
+                                        <th>Content</th>
                                         <th>Picture</th>
-                                        <th>Description</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($sellers as $seller) : ?>
+                                    <?php foreach ($news as $item) : ?>
                                         <tr>
-                                            <td><?= $seller['id'] ?></td>
-                                            <td><?= $seller['name'] ?></td>
+                                            <td><?= $item['id'] ?></td>
+                                            <td><?= $item['title'] ?></td>
+                                            <td><?= $item['content'] ?></td>
                                             <td>
-                                                <?php if (!empty($seller['picture']) && file_exists(ROOTPATH . 'public/uploads/sellers/' . $seller['picture'])) : ?>
-                                                    <img src="<?= base_url('uploads/sellers/' . $seller['picture']) ?>" alt="Seller Picture" width="50">
-                                                <?php else : ?>
-                                                    <!-- Jika tidak ada foto tersedia, Anda dapat menampilkan placeholder atau pesan alternatif -->
-                                                    <span>No Picture Available</span>
-                                                <?php endif; ?>
+                                                <img src="<?= base_url('uploads/news/' . $item['picture']) ?>" alt="News Picture" style="max-width: 100px;">
                                             </td>
 
-                                            <td><?= $seller['description'] ?></td>
                                             <td>
-                                                <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal<?= $seller['id'] ?>"><i class="fas fa-edit"></i></a>
-                                                <button class="btn btn-danger btn-sm delete-seller" data-id="<?= $seller['id'] ?>"><i class="fas fa-trash-alt"></i></button>
+                                                <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editModal<?= $item['id'] ?>"><i class="fas fa-edit"></i></a>
+                                                <button class="btn btn-danger btn-sm delete-news" data-id="<?= $item['id'] ?>"><i class="fas fa-trash-alt"></i></button>
                                             </td>
                                         </tr>
                                         <!-- Modal Edit -->
-                                        <div class="modal fade" id="editModal<?= $seller['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?= $seller['id'] ?>" aria-hidden="true">
+                                        <div class="modal fade" id="editModal<?= $item['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="editModalLabel<?= $item['id'] ?>" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="editModalLabel<?= $seller['id'] ?>">Edit Seller</h5>
+                                                        <h5 class="modal-title" id="editModalLabel<?= $item['id'] ?>">Edit News</h5>
                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <!-- Edit data form -->
-                                                        <form action="<?= base_url('panel/seller/update/' . $seller['id']); ?>" method="post" enctype="multipart/form-data">
+                                                        <!-- Form edit data -->
+                                                        <form action="<?= base_url('panel/news/update/' . $item['id']); ?>" method="post" enctype="multipart/form-data">
                                                             <div class="form-group">
-                                                                <label for="name">Name <span class="text-danger">*</span></label>
-                                                                <input type="text" class="form-control" name="name" value="<?= $seller['name'] ?>" required>
+                                                                <label for="title">Title <span class="text-danger">*</span></label>
+                                                                <input type="text" class="form-control" name="title" value="<?= $item['title'] ?>" required>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="picture">Picture<span class="text-danger">*</span></label>
-                                                                <!-- Tampilkan gambar sebelumnya jika ada -->
-                                                                <?php if (!empty($seller['picture']) && file_exists(ROOTPATH . 'public/uploads/sellers/' . $seller['picture'])) : ?>
-                                                                    <img src="<?= base_url('uploads/sellers/' . $seller['picture']) ?>" alt="Previous Picture" width="100">
+                                                                <label for="content">Content <span class="text-danger">*</span></label>
+                                                                <textarea class="form-control" name="content" required><?= $item['content'] ?></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="picture">Picture</label>
+                                                                <!-- Display the previous picture if available -->
+                                                                <?php if (!empty($item['picture']) && file_exists(ROOTPATH . 'public/uploads/news/' . $item['picture'])) : ?>
+                                                                    <img src="<?= base_url('uploads/news/' . $item['picture']) ?>" alt="Previous Picture" width="100">
                                                                 <?php endif; ?>
-                                                                <!-- Input untuk mengunggah gambar baru -->
+                                                                <!-- Input for uploading a new picture -->
                                                                 <input type="file" class="form-control" name="picture">
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="description">Description<span class="text-danger">*</span></label>
-                                                                <textarea class="form-control" name="description" required><?= $seller['description'] ?></textarea>
-                                                            </div>
+
+
                                                             <!-- Add inputs for other columns if needed -->
+
                                                             <button type="submit" class="btn btn-primary">Update</button>
                                                         </form>
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -130,30 +127,31 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModalLabel">Add Seller</h5>
+                <h5 class="modal-title" id="addModalLabel">Add News</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <!-- Add data form -->
-                <form action="<?= base_url('panel/seller/add'); ?>" method="post" enctype="multipart/form-data">
+                <!-- Form to add data -->
+                <form action="<?= base_url('panel/news/add'); ?>" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="name">Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="name" required>
+                        <label for="title">Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" name="title" required>
                     </div>
                     <div class="form-group">
-                        <label for="picture">Picture<span class="text-danger">*</span></label>
+                        <label for="content">Content <span class="text-danger">*</span></label>
+                        <textarea class="form-control" name="content" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="picture">Picture <span class="text-danger">*</span></label>
                         <input type="file" class="form-control" name="picture" required>
                     </div>
-                    <div class="form-group">
-                        <label for="description">Description<span class="text-danger">*</span></label>
-                        <textarea class="form-control" name="description"></textarea>
-                    </div>
+
                     <!-- Add inputs for other columns if needed -->
+
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
-
             </div>
         </div>
     </div>
