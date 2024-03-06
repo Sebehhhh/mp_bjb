@@ -80,7 +80,7 @@
                                 <img src="<?= base_url('uploads/products/' . $product['picture']); ?>" alt="<?= $product['name']; ?>">
                             </div>
                             <!-- Gunakan class bg-primary untuk menampilkan bahwa ini adalah produk -->
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Product</div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;"><?= $product['cat_name']; ?></div>
                             <div class="p-4 rounded-bottom">
                                 <h4><b class="text-light" style="font-size: 12px;"><?= $product['name']; ?></b></h4>
                                 <p class="mb-0 text-light" style="font-size: 8px;">Price: <?= $product['price']; ?></p>
