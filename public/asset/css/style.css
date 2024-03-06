@@ -343,6 +343,15 @@
 
 
 /*** Fruits Start ***/
+
+@media (max-width: 768px) { /* Atur lebar maksimum untuk layar yang dianggap sebagai layar kecil */
+    .fruite-item {
+        flex-basis: 100%; /* Setiap produk mengambil 50% lebar dari container pada layar kecil */
+        max-width: 100%; /* Maksimum lebar setiap produk adalah 50% */
+    }
+}
+
+
 .fruite-item {
     position: relative;
 }
@@ -538,6 +547,36 @@
 
 /*** Single Page Start ***/
 .pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.pagination li {
+    margin: 0 5px; /* Atur jarak antara tautan */
+}
+
+.pagination li a {
+    display: block;
+    padding: 5px 10px; /* Atur padding untuk tautan */
+    background-color: #f0f0f0;
+    color: #333;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.pagination li.active a {
+    background-color: #0cad34; /* Atur warna latar belakang untuk tautan aktif */
+    color: #fff;
+}
+
+.pagination li a:hover {
+    background-color: #ccc; /* Atur warna latar belakang saat tautan dihover */
+}
+/* 
+.pagination {
     display: inline-block;
 }
   
@@ -560,7 +599,7 @@
 
 .nav.nav-tabs .nav-link.active {
     border-bottom: 2px solid var(--bs-secondary) !important;
-}
+} */
 /*** Single Page End ***/
 
 

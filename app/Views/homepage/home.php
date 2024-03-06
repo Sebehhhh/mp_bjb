@@ -82,15 +82,16 @@
                             <!-- Gunakan class bg-primary untuk menampilkan bahwa ini adalah produk -->
                             <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">Product</div>
                             <div class="p-4 rounded-bottom">
-                                <h4><b class="text-light"><?= $product['name']; ?></b></h4>
-                                <p class="mb-0 text-light">Price: <?= $product['price']; ?></p>
-                                <p class="mb-0 text-light">Stock: <?= $product['stok']; ?></p>
+                                <h4><b class="text-light" style="font-size: 12px;"><?= $product['name']; ?></b></h4>
+                                <p class="mb-0 text-light" style="font-size: 8px;">Price: <?= $product['price']; ?></p>
+                                <p class="mb-0 text-light" style="font-size: 8px;">Seller: <?= $product['seller_name']; ?></p>
                                 <!-- Anda bisa menambahkan informasi lainnya tentang produk di sini -->
                             </div>
                         </div>
                     </a>
                 </div>
             <?php endforeach; ?>
+
         </div>
     </div>
 </div>
@@ -115,9 +116,9 @@
                             <!-- Gunakan class bg-primary untuk menampilkan bahwa ini adalah berita -->
                             <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">News</div>
                             <div class="p-4 rounded-bottom">
-                                <h4><b class="text-light"><?= $newsItem['title']; ?></b></h4>
-                                <p class="mb-0 text-light"><?= $newsItem['content']; ?></p>
-                                <p class="mb-0 text-light">Author: <?= $newsItem['created_by']; ?></p>
+                                <h4><b class="text-light" style="font-size: 12px;"><?= $newsItem['title']; ?></b></h4>
+                                <!-- <p class="mb-0 text-light"><?= $newsItem['content']; ?></p> -->
+                                <p class="mb-0 text-light" style="font-size: 8px;">Author: <?= $newsItem['user_name']; ?></p>
                                 <!-- Anda bisa menambahkan informasi lainnya tentang berita di sini -->
                             </div>
                         </div>
