@@ -72,17 +72,45 @@ class Home extends BaseController
     public function allProducts()
     {
         $productModel = new ProductModel();
+        $sellerModel = new SellerModel();
+        $categoryProductModel = new ProductCatModel();
 
-        // Mendapatkan data produk dengan paginasi per 10
-        $products = $productModel->paginate(8); // Mengatur jumlah item per halaman menjadi 10
+        // Mendapatkan parameter pencarian
+        $keyword = $this->request->getGet('keyword');
+        $sellerId = $this->request->getGet('seller');
+        $categoryId = $this->request->getGet('category');
+
+        // Mendapatkan data produk dengan paginasi per 8
+        $productsQuery = $productModel->orderBy('id', 'DESC'); // Atur urutan sesuai kebutuhan, misalnya berdasarkan id terbaru
+
+        // Filter berdasarkan keyword
+        if (!empty($keyword)) {
+            $productsQuery->like('product_name', $keyword);
+        }
+
+        // Filter berdasarkan seller
+        if (!empty($sellerId)) {
+            $productsQuery->where('seller_id', $sellerId);
+        }
+
+        // Filter berdasarkan kategori
+        if (!empty($categoryId)) {
+            $productsQuery->where('cat_id', $categoryId);
+        }
+
+        $products = $productsQuery->paginate(8);
+
+        // Mendapatkan semua data penjual
+        $sellers = $sellerModel->findAll();
+
+        // Mendapatkan semua data kategori produk
+        $categories = $categoryProductModel->findAll();
 
         // Mendapatkan data penjual dan kategori untuk setiap produk dan menyimpan nama penjual dan nama kategori di dalamnya
         foreach ($products as &$product) {
             // Mengambil data penjual berdasarkan seller_id dari produk
-            $sellerModel = new SellerModel();
             $sellerData = $sellerModel->find($product['seller_id']);
             // Mengambil data kategori produk berdasarkan cat_id dari produk
-            $categoryProductModel = new ProductCatModel();
             $categoryProductData = $categoryProductModel->find($product['cat_id']);
 
             // Menyimpan nama penjual dan nama kategori ke dalam data produk
@@ -95,10 +123,11 @@ class Home extends BaseController
 
         return view('homepage/allProducts', [
             'products' => $products,
+            'sellers' => $sellers, // Mengirimkan data penjual ke view
+            'categories' => $categories, // Mengirimkan data kategori produk ke view
             'pager' => $pager
         ]);
     }
-
 
 
     // public function seller()

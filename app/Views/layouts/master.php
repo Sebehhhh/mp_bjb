@@ -48,7 +48,7 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-secondary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php if (session()->has('alert')) : ?>
         <script>
             Swal.fire({
@@ -57,7 +57,7 @@
                 text: '<?= session('alert.message') ?>',
             });
         </script>
-    <?php endif; ?> -->
+    <?php endif; ?>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

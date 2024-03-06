@@ -19,38 +19,42 @@
         <h1 class="mb-4">All Products</h1>
         <div class="row g-4">
             <div class="col-lg-12">
-                <div class="row g-4">
+                <!-- app/Views/search_form.php -->
 
-                    <div class="col-xl-4">
-                        <div class="input-group w-100 mx-auto d-flex">
-                            <input type="search" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
-                            <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                <form action="<?= base_url('allProducts') ?>" method="get">
+                    <div class="row g-4">
+                        <div class="col-xl-3">
+                            <div class="input-group w-100 mx-auto d-flex">
+                                <input type="search" name="keywords" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-4">
-                        <div class="input-group w-100 mx-auto d-flex">
-                            <select class="form-select form-select-lg p-3">
-                                <option value="">All Sellers</option>
-                                <option value="seller1">Seller 1</option>
-                                <option value="seller2">Seller 2</option>
-                                <option value="seller3">Seller 3</option>
-                            </select>
-                            <span class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        <div class="col-xl-3">
+                            <div class="input-group w-100 mx-auto d-flex">
+                                <select name="seller" class="form-select p-3">
+                                    <option value="">All Sellers</option>
+                                    <?php foreach ($sellers as $seller) : ?>
+                                        <option value="<?= $seller['id'] ?>"><?= $seller['name'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xl-4">
-                        <div class="input-group w-100 mx-auto d-flex">
-                            <select class="form-select form-select-lg p-3">
-                                <option value="">All Categories</option>
-                                <option value="fruits">Fruits</option>
-                                <option value="vegetables">Vegetables</option>
-                                <option value="meat">Meat</option>
-                            </select>
-                            <span class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        <div class="col-xl-3">
+                            <div class="input-group w-100 mx-auto d-flex">
+                                <select name="category" class="form-select p-3">
+                                    <option value="">All Categories</option>
+                                    <?php foreach ($categories as $category) : ?>
+                                        <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                </div>
+                        <div class="col-xl-3">
+                            <button type="submit" class="btn btn-primary w-100 mx-auto d-flex button-center">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
                 <div class="row g-4 mt-5">
                     <!-- <div class="col-lg-3">
                         <div class="row g-4">
