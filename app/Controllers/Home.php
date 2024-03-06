@@ -137,6 +137,27 @@ class Home extends BaseController
 
     public function news()
     {
-        return view('homepage/news');
+        // Tangkap ID dari parameter query string
+        $newsId = $this->request->getGet('id');
+
+        // Cari data berita berdasarkan ID
+        $newsModel = new NewsModel();
+        $newsItem = $newsModel->find($newsId);
+
+        // Jika data berita ditemukan, tambahkan informasi penulis
+        if (!empty($newsItem)) {
+            // Ambil informasi penulis berdasarkan created_by dari data berita
+            $authorId = $newsItem['created_by']; // Ubah sesuai dengan nama kolom yang tepat di tabel berita
+            $authorModel = new User(); // Gantilah UserModel dengan nama model pengguna Anda
+            $authorInfo = $authorModel->find($authorId);
+
+            // Jika informasi penulis ditemukan, tambahkan ke data berita
+            if (!empty($authorInfo)) {
+                $newsItem['author'] = $authorInfo['name']; // Ubah 'name' sesuai dengan nama kolom yang berisi nama penulis di tabel pengguna
+            }
+        }
+
+        // Kirim data berita ke tampilan berita
+        return view('homepage/news', ['newsItem' => $newsItem]);
     }
 }

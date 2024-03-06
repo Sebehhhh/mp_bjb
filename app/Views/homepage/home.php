@@ -102,12 +102,12 @@
     <div class="container py-1">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0"><b>Berita</b></h5>
-            <a href="<?= base_url('/allNews'); ?>" class="btn btn-primary">View All</a> <!-- Tautan View All -->
+            <!-- <a href="<?= base_url('/allNews'); ?>" class="btn btn-primary">View All</a> Tautan View All -->
         </div>
         <div class="owl-carousel vegetable-carousel justify-content-center">
             <?php foreach ($news as $newsItem) : ?>
                 <div class="item">
-                    <a href="<?= base_url('/news'); ?>" class="text-decoration-none">
+                    <a href="<?= base_url('/news?id=' . $newsItem['id']); ?>" class="text-decoration-none">
                         <div class="border border-primary rounded position-relative vesitable-item">
                             <div class="vesitable-img square-menu">
                                 <!-- Mengambil gambar berita dari direktori public -->
