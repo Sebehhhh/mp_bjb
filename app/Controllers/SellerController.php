@@ -41,6 +41,8 @@ class SellerController extends BaseController // Adjusted class name
         $validation = \Config\Services::validation();
         $validation->setRules([
             'name' => 'required',
+            'code' => 'required',
+            'serial' => 'required',
             'description' => 'required',
             'picture' => 'uploaded[picture]|max_size[picture,2048]|is_image[picture]|mime_in[picture,image/jpg,image/jpeg,image/png]'
         ]);
@@ -51,6 +53,8 @@ class SellerController extends BaseController // Adjusted class name
 
         // Retrieve input data
         $name = $this->request->getPost('name');
+        $code = $this->request->getPost('code');
+        $serial = $this->request->getPost('serial');
         $picture = $this->request->getFile('picture');
         $description = $this->request->getPost('description');
         $createdBy = session()->get('user_id'); // Retrieve user_id from session
@@ -63,6 +67,8 @@ class SellerController extends BaseController // Adjusted class name
         $sellerModel = new SellerModel(); // Adjusted model
         $sellerModel->insert([
             'name' => $name,
+            'kode' => $code,
+            'serial' => $serial,
             'picture' => $newPictureName, // Save only the name of the picture
             'description' => $description, // Save the description
             'created_by' => $createdBy // Set created_by with user_id from session
@@ -84,6 +90,8 @@ class SellerController extends BaseController // Adjusted class name
 
         // Retrieve input data
         $name = $this->request->getPost('name');
+        $code = $this->request->getPost('code');
+        $serial = $this->request->getPost('serial');
         $picture = $this->request->getFile('picture');
         $description = $this->request->getPost('description');
         $updatedBy = session()->get('user_id'); // Retrieve user_id from session
@@ -101,6 +109,8 @@ class SellerController extends BaseController // Adjusted class name
             $validation = \Config\Services::validation();
             $validation->setRules([
                 'name' => 'required',
+                'code' => 'required',
+                'serial' => 'required',
                 'description' => 'required',
                 'picture' => 'uploaded[picture]|max_size[picture,2048]|is_image[picture]|mime_in[picture,image/jpg,image/jpeg,image/png]'
             ]);
@@ -118,6 +128,8 @@ class SellerController extends BaseController // Adjusted class name
             $validation = \Config\Services::validation();
             $validation->setRules([
                 'name' => 'required',
+                'code' => 'required',
+                'serial' => 'required',
                 'description' => 'required'
             ]);
 
@@ -130,6 +142,8 @@ class SellerController extends BaseController // Adjusted class name
         $sellerModel = new SellerModel(); // Adjusted model
         $sellerModel->update($id, [
             'name' => $name,
+            'kode' => $code,
+            'serial' => $serial,
             'picture' => $newPictureName, // Save only the name of the picture
             'description' => $description, // Save the description
             'updated_by' => $updatedBy // Set updated_by with user_id from session
@@ -141,8 +155,41 @@ class SellerController extends BaseController // Adjusted class name
         return redirect()->back();
     }
 
+    public function serialUpdate()
+    {
+        // Check logged_in session
+        if (!session()->get('logged_in')) {
+            return view('errors/html/error_401');
+        }
 
+        // Load the model
+        $sellerModel = new SellerModel(); // Adjusted model
 
+        // Retrieve all sellers
+        $sellers = $sellerModel->findAll();
+
+        // Array to hold used serial numbers
+        $usedSerials = [];
+
+        // Loop through each seller to generate and update serial
+        foreach ($sellers as $seller) {
+            do {
+                // Generate random serial number between 1 and 100
+                $newSerial = rand(1, 100);
+            } while (in_array($newSerial, $usedSerials)); // Ensure the generated serial is unique
+
+            // Update the seller's serial
+            $sellerModel->update($seller['id'], ['serial' => $newSerial]);
+
+            // Add the new serial to the used serials array
+            $usedSerials[] = $newSerial;
+        }
+
+        // Set success alert message
+        $this->setFlashAlert('success', 'Success', 'Serials have been updated successfully.');
+
+        return redirect()->back();
+    }
 
 
     public function delete($id)

@@ -12,57 +12,43 @@ class Home extends BaseController
 {
     public function index()
     {
-        // Memuat data news dari model
         $newsModel = new NewsModel();
-        $newsData = $newsModel->findAll(); // Anda bisa menyesuaikan dengan metode pengambilan data yang sesuai
+        $newsData = $newsModel->findAll();
 
-        // Memuat data product dari model
         $productModel = new ProductModel();
-        $productData = $productModel->findAll(); // Anda bisa menyesuaikan dengan metode pengambilan data yang sesuai
+        $productData = $productModel->findAll();
 
-        // Memuat data user dari model
         $userModel = new User();
-
-        // Membuat array baru untuk menyimpan data berita dengan nama pengguna
         $newsWithUserNames = [];
         foreach ($newsData as $news) {
-            // Mendapatkan nama pengguna dari id pengguna yang membuat berita
-            $userData = $userModel->find($news['created_by']); // Anda bisa menyesuaikan dengan metode pengambilan data yang sesuai
-
-            // Menyimpan data berita bersama dengan nama pengguna
-            $news['user_name'] = $userData['name']; // Menambahkan user_name ke dalam data berita
+            $userData = $userModel->find($news['created_by']);
+            $news['user_name'] = $userData['name'];
             $newsWithUserNames[] = $news;
         }
 
-        // Membuat array baru untuk menyimpan data produk dengan nama penjual
         $productsWithSellerNames = [];
         foreach ($productData as $product) {
-            // Mendapatkan nama penjual dari id penjual yang terdapat di produk
             $sellerModel = new SellerModel();
-            $sellerData = $sellerModel->find($product['seller_id']); // Anda bisa menyesuaikan dengan metode pengambilan data yang sesuai
-            $catModel = new ProductCatModel();
-            $catData = $catModel->find($product['cat_id']); // Anda bisa menyesuaikan dengan metode pengambilan data yang sesuai
-
-            // Menyimpan data produk bersama dengan nama penjual
-            $product['seller_name'] = $sellerData['name']; // Menambahkan seller_name ke dalam data produk
-            $product['cat_name'] = $catData['name']; // Menambahkan seller_name ke dalam data produk
+            $sellerData = $sellerModel->find($product['seller_id']);
+            $product['seller_name'] = $sellerData['name'];
+            $product['serial'] = $sellerData['serial'];
+            $product['seller_kode'] = $sellerData['kode'];
             $productsWithSellerNames[] = $product;
         }
 
-        // Mengirim data ke view
+        // Fungsi untuk mengurutkan produk berdasarkan seller_kode
+        usort($productsWithSellerNames, function ($a, $b) {
+            return $a['seller_kode'] <=> $b['seller_kode'];
+        });
+
         $data = [
-            'news' => $newsWithUserNames, // Menggunakan data berita yang telah diperbarui dengan nama pengguna
-            'products' => $productsWithSellerNames // Menggunakan data produk yang telah diperbarui dengan nama penjual
+            'news' => $newsWithUserNames,
+            'products' => $productsWithSellerNames
         ];
 
         return view('homepage/home', $data);
     }
 
-
-    // public function calendar()
-    // {
-    //     return view('homepage/calendar');
-    // }
 
     public function about()
     {
@@ -75,65 +61,45 @@ class Home extends BaseController
         $sellerModel = new SellerModel();
         $categoryProductModel = new ProductCatModel();
 
-        // Mendapatkan parameter pencarian
         $keyword = $this->request->getGet('keyword');
         $sellerId = $this->request->getGet('seller');
         $categoryId = $this->request->getGet('category');
 
-        // Mendapatkan data produk dengan paginasi per 8
-        $productsQuery = $productModel->orderBy('id', 'DESC'); // Atur urutan sesuai kebutuhan, misalnya berdasarkan id terbaru
+        $productsQuery = $productModel->orderBy('id', 'DESC');
 
-        // Filter berdasarkan keyword
         if (!empty($keyword)) {
             $productsQuery->like('product_name', $keyword);
         }
 
-        // Filter berdasarkan seller
         if (!empty($sellerId)) {
             $productsQuery->where('seller_id', $sellerId);
         }
 
-        // Filter berdasarkan kategori
         if (!empty($categoryId)) {
             $productsQuery->where('cat_id', $categoryId);
         }
 
         $products = $productsQuery->paginate(8);
-
-        // Mendapatkan semua data penjual
         $sellers = $sellerModel->findAll();
-
-        // Mendapatkan semua data kategori produk
         $categories = $categoryProductModel->findAll();
 
-        // Mendapatkan data penjual dan kategori untuk setiap produk dan menyimpan nama penjual dan nama kategori di dalamnya
         foreach ($products as &$product) {
-            // Mengambil data penjual berdasarkan seller_id dari produk
             $sellerData = $sellerModel->find($product['seller_id']);
-            // Mengambil data kategori produk berdasarkan cat_id dari produk
             $categoryProductData = $categoryProductModel->find($product['cat_id']);
-
-            // Menyimpan nama penjual dan nama kategori ke dalam data produk
             $product['seller_name'] = $sellerData['name'];
+            $product['seller_picture'] = $sellerData['picture'];
             $product['category_name'] = $categoryProductData['name'];
         }
-
-        // Membuat link paginasi untuk tampilan
         $pager = $productModel->pager;
 
         return view('homepage/allProducts', [
             'products' => $products,
-            'sellers' => $sellers, // Mengirimkan data penjual ke view
-            'categories' => $categories, // Mengirimkan data kategori produk ke view
+            'sellers' => $sellers,
+            'categories' => $categories,
             'pager' => $pager
         ]);
     }
 
-
-    // public function seller()
-    // {
-    //     return view('homepage/seller');
-    // }
 
     public function news()
     {
@@ -160,4 +126,46 @@ class Home extends BaseController
         // Kirim data berita ke tampilan berita
         return view('homepage/news', ['newsItem' => $newsItem]);
     }
+
+    public function allNews()
+    {
+        // Buat instance model berita
+        $newsModel = new NewsModel();
+
+        // Konfigurasi pagination
+        $pager = \Config\Services::pager();
+        $perPage = 8; // Jumlah berita per halaman
+
+        // Ambil semua berita dengan pagination
+        $allNews = $newsModel->paginate($perPage);
+
+        // Jika terdapat berita, tambahkan informasi penulis untuk setiap berita
+        if (!empty($allNews)) {
+            // Buat instance model pengguna
+            $authorModel = new User(); // Gantilah UserModel dengan nama model pengguna Anda
+
+            // Iterasi setiap berita
+            foreach ($allNews as &$newsItem) {
+                // Ambil informasi penulis berdasarkan created_by dari data berita
+                $authorId = $newsItem['created_by']; // Ubah sesuai dengan nama kolom yang tepat di tabel berita
+                $authorInfo = $authorModel->find($authorId);
+
+                // Jika informasi penulis ditemukan, tambahkan ke data berita
+                if (!empty($authorInfo)) {
+                    $newsItem['author'] = $authorInfo['name']; // Ubah 'name' sesuai dengan nama kolom yang berisi nama penulis di tabel pengguna
+                }
+            }
+        }
+
+        // Tampilkan pagination
+        $pager->setPath(''); // Atur path pagination, kosongkan jika menggunakan default
+
+        // Kirim semua berita dan pagination ke tampilan
+        return view('homepage/all_news', [
+            'allNews' => $allNews,
+            'pager' => $pager
+        ]);
+    }
+
+    
 }

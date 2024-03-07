@@ -37,8 +37,6 @@
 
     <?= $this->include('layouts/partials/header') ?>
 
-    <?= $this->include('layouts/partials/menu') ?>
-
     <div id="content">
         <?= $this->renderSection('content') ?>
     </div>
@@ -46,7 +44,35 @@
     <?= $this->include('layouts/partials/footer') ?>
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-secondary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- <a href="#" class="btn btn-secondary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a> -->
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <script>
+        function showModal(seller, sellerPicture) {
+            document.getElementById('seller').innerText = 'Seller: ' + seller;
+            document.getElementById('sellerPicture').src = '<?= base_url("uploads/sellers/") ?>' + sellerPicture;
+            $('#productModal').modal('show');
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function() {
+            $(".mobile-navbar .list").click(function(event) {
+                event.preventDefault(); // Mencegah perilaku default dari link
+
+                $(".mobile-navbar .list").removeClass("active");
+                $(this).addClass("active");
+
+                // Perpindahan halaman atau tindakan lainnya
+                var url = $(this).find("a").attr("href");
+                // Lakukan perpindahan halaman dengan menggunakan URL dari tautan yang diklik
+                window.location.href = url;
+            });
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <?php if (session()->has('alert')) : ?>

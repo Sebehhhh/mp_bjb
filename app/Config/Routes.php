@@ -12,6 +12,7 @@ $routes->get('/seller', 'Home::seller');
 $routes->get('/about', 'Home::about');
 $routes->get('/allProducts', 'Home::allProducts');
 $routes->get('/news', 'Home::news');
+$routes->get('/allNews', 'Home::allNews');
 
 // AUTH
 $routes->get('register', 'AuthController::register');
@@ -46,6 +47,7 @@ $routes->get('panel/seller', 'SellerController::index');
 $routes->post('panel/seller/add', 'SellerController::store');
 $routes->post('panel/seller/update/(:num)', 'SellerController::update/$1');
 $routes->get('panel/seller/delete/(:num)', 'SellerController::delete/$1');
+$routes->get('/serial/update', 'SellerController::serialUpdate');
 
 // NEWS
 $routes->get('panel/news', 'NewsController::index');

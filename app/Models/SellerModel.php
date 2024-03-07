@@ -11,6 +11,8 @@ class SellerModel extends Model
     protected $useSoftDeletes   = true;
     protected $allowedFields = [
         'name',
+        'kode',
+        'serial',
         'picture',
         'description',
         'created_at',

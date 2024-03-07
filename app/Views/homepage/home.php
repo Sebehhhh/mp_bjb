@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 
 <!-- Hero Start -->
-<div class="container-fluid py-5 mb-5 hero-header">
+<div class="container py-5 mb-5 hero-header">
     <div class="container py-5">
         <!-- Logo -->
         <div class="row justify-content-center mb-3">
@@ -80,7 +80,7 @@
                                 <img src="<?= base_url('uploads/products/' . $product['picture']); ?>" alt="<?= $product['name']; ?>">
                             </div>
                             <!-- Gunakan class bg-primary untuk menampilkan bahwa ini adalah produk -->
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;"><?= $product['cat_name']; ?></div>
+                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">A<?= $product['seller_kode']; ?></div>
                             <div class="p-4 rounded-bottom">
                                 <h4><b class="text-light" style="font-size: 12px;"><?= $product['name']; ?></b></h4>
                                 <p class="mb-0 text-light" style="font-size: 8px;">Price: <?= $product['price']; ?></p>
@@ -91,7 +91,6 @@
                     </a>
                 </div>
             <?php endforeach; ?>
-
         </div>
     </div>
 </div>
@@ -102,7 +101,7 @@
     <div class="container py-1">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h5 class="mb-0"><b>Berita</b></h5>
-            <!-- <a href="<?= base_url('/allNews'); ?>" class="btn btn-primary">View All</a> Tautan View All -->
+            <a href="<?= base_url('/allNews'); ?>" class="btn btn-primary">View All</a>
         </div>
         <div class="owl-carousel vegetable-carousel justify-content-center">
             <?php foreach ($news as $newsItem) : ?>
