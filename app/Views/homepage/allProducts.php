@@ -14,7 +14,7 @@
                 <div class="row g-4">
                     <div class="col-xl-3">
                         <div class="input-group w-100 mx-auto d-flex">
-                            <input type="search" name="keywords" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                            <input type="text" name="keyword" class="form-control p-3" placeholder="keywords" aria-describedby="search-icon-1">
                         </div>
                     </div>
                     <div class="col-xl-3">

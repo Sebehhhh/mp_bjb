@@ -13,6 +13,17 @@
      opacity: 1;
  }
 
+ .event-item {
+    border-bottom: 1px solid #ccc; /* Garis pembatas antar event */
+    padding-bottom: 10px; /* Jarak antara setiap item event */
+}
+
+.event-item h5,
+.event-item p {
+    font-size: 10px; /* Ukuran teks */
+    margin: 0; /* Menghapus margin default */
+}
+
  .back-to-top {
     position: fixed;
     right: 30px;
@@ -143,58 +154,75 @@
 }
 /*** Topbar End ***/
 
+
 /* NAVBAR START */
-
+/* Gaya untuk tampilan desktop atau tablet */
 .mobile-navbar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #ffffff;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-.mobile-navbar ul {
-    display: flex;
-    justify-content: space-around;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.mobile-navbar .list {
-    text-align: center;
-    padding: 10px;
-    position: relative;
-}
-
-.mobile-navbar .list.active .icon {
-    background-color: #007bff;
-    color: #ffffff;
-    border-radius: 50%;
-}
-
-.mobile-navbar .icon {
-    display: block;
-    font-size: 24px;
-    margin-bottom: 5px;
-}
-
-.mobile-navbar .text {
-    font-size: 12px;
-}
-
-.mobile-navbar .indicator {
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 8px;
-    height: 8px;
-    background-color: #007bff;
-    border-radius: 50%;
     display: none;
 }
+
+/* Gaya untuk tampilan mobile */
+@media only screen and (max-width: 600px) {
+    .mobile-navbar {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-image: url('../img/hijau2.png'); /* Ganti path dengan URL atau path lokal gambar Anda */
+        background-size: cover;
+        background-position: center;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        display: block; /* Menampilkan navigasi untuk tampilan mobile */
+        border-top-left-radius: 50px; /* Melengkungkan sudut kiri atas */
+        border-top-right-radius: 50px; /* Melengkungkan sudut kanan atas */
+    }
+    
+    
+
+    .mobile-navbar ul {
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .mobile-navbar .list {
+        text-align: center;
+        padding: 10px;
+        position: relative;
+    }
+
+    .mobile-navbar .list.active .icon {
+        background-color: #007bff;
+        color: #ffffff;
+        border-radius: 50%;
+    }
+
+    .mobile-navbar .icon {
+        display: block;
+        font-size: 24px;
+        margin-bottom: 5px;
+    }
+
+    .mobile-navbar .text {
+        font-size: 12px;
+    }
+
+    .mobile-navbar .indicator {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background-color: #007bff;
+        border-radius: 50%;
+        display: none;
+    }
+}
+
+
 
 /* NAVBAR END */
 
@@ -268,15 +296,70 @@
 }
 /*** Navbar End ***/
 
+.card1 {
+    width: 70px; /* Atur lebar sesuai kebutuhan Anda */
+    height: 70px; /* Atur tinggi sesuai kebutuhan Anda */
+    background-image: url('../img/8844492.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px; /* Atur sudut melengkung sesuai kebutuhan Anda */
+    overflow: hidden;
+}
+
+.card2 {
+    width: 70px; /* Atur lebar sesuai kebutuhan Anda */
+    height: 70px; /* Atur tinggi sesuai kebutuhan Anda */
+    background-image: url('../img/8851974.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px; /* Atur sudut melengkung sesuai kebutuhan Anda */
+    overflow: hidden;
+}
+
+.card3 {
+    width: 70px; /* Atur lebar sesuai kebutuhan Anda */
+    height: 70px; /* Atur tinggi sesuai kebutuhan Anda */
+    background-image: url('../img/8844507.png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px; /* Atur sudut melengkung sesuai kebutuhan Anda */
+    overflow: hidden;
+}
+
+
 /*** Hero Header ***/
 .hero-header {
-    background: linear-gradient(rgba(248, 223, 173, 0.1), rgba(248, 223, 173, 0.1)), url(../img/bg1.jpg);
+    background: linear-gradient(rgba(248, 223, 173, 0.1), rgba(248, 223, 173, 0.1)), url(../img/hijau2.png);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     border-bottom-left-radius: 50% 20px;
     border-bottom-right-radius: 50% 20px;
+    position: relative; /* Add this line to ensure absolute positioning works relative to this container */
 }
+
+@media (max-width: 767px) {
+    .sponsored-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%; /* Full-width image */
+        z-index: 9999; /* Ensure it's above other content */
+    }
+}
+
+@media (min-width: 768px) {
+    .sponsored-image {
+        position: absolute;
+        top: 0;
+        left: 50%; /* Position it at the center horizontally */
+        transform: translateX(-50%); /* Adjust to center it properly */
+        width: calc(100% - 40px); /* Set width to 100% minus the padding or margin of the hero header */
+        max-width: 1200px; /* Set maximum width as needed */
+        z-index: 9999;
+    }
+}
+
 
 @media (max-width: 768px) {
     .hero-header {
@@ -389,7 +472,7 @@
 
 
 .vesitable-item .p-4 {
-    background-image: url('../img/bg-card.jpg'); /* Ganti path_to_your_image dengan path atau URL gambar yang Anda inginkan */
+    background-image: url('../img/hijau.png'); /* Ganti path_to_your_image dengan path atau URL gambar yang Anda inginkan */
     background-size: cover; /* Untuk memastikan gambar memenuhi seluruh area background */
     border: none; /* Hilangkan border */
 }
@@ -415,7 +498,7 @@
 }
 
 .fruite-item .p-4 {
-    background-image: url('../img/bg-card.jpg'); /* Ganti path_to_your_image dengan path atau URL gambar yang Anda inginkan */
+    background-image: url('../img/hijau.png'); /* Ganti path_to_your_image dengan path atau URL gambar yang Anda inginkan */
     background-size: cover; /* Untuk memastikan gambar memenuhi seluruh area background */
     border: none; /* Hilangkan border */
 }
@@ -626,7 +709,7 @@
 }
 
 .pagination li.active a {
-    background-color: #0cad34; /* Atur warna latar belakang untuk tautan aktif */
+    background-color: #885200; /* Atur warna latar belakang untuk tautan aktif */
     color: #fff;
 }
 

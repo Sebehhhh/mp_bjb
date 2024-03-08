@@ -3,19 +3,19 @@
 <?= $this->section('content') ?>
 
 <!-- Hero Start -->
-<div class="container py-5 mb-5 hero-header">
+<div class="container py-5 hero-header">
+    <img src="<?= base_url('asset/img/dinas.png'); ?>" alt="Sponsored" class="sponsored-image">
     <div class="container py-5">
         <!-- Logo -->
-        <div class="row justify-content-center mb-3">
+        <div class="row justify-content-center">
             <div class="col-md-2 text-center">
-                <img src="<?= base_url('asset/img/logo.jpg'); ?>" alt="Logo" class="img-fluid rounded" height="1200px" width="160">
-
+                <img src="<?= base_url('asset/img/logo.png'); ?>" alt="Logo" class="img-fluid rounded" height="160px" width="220">
             </div>
         </div>
         <!-- Form Pencarian -->
         <div class="row justify-content-center mb-3">
             <div class="col-md-6">
-                <form action="#" method="GET" class="d-flex">
+                <form action="<?= base_url('allProducts'); ?>" method="GET" class="d-flex">
                     <input type="text" name="search" placeholder="Cari sesuatu..." class="form-control me-2">
                     <button type="submit" class="btn btn-primary">Cari</button>
                 </form>
@@ -29,23 +29,67 @@
                 <div class="col-md-3">
                 </div>
                 <div class="col-md-2 mx-2">
-                    <div class="card text-center">
+                    <div class="card1 text-center" data-toggle="modal" data-target="#exampleModal">
                         <div class="card-body">
-                            <i class="bi bi-calendar-date fs-2 text-primary"></i>
+                            <i class="bi bi-calendar-date-fill fs-2 text-light"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Event List</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <?php
+                                $today = date('Y-m-d');
+                                foreach ($events as $event) :
+                                    // Bandingkan tanggal event dengan tanggal hari ini
+                                    $eventDate = date('Y-m-d', strtotime($event['date']));
+                                    if ($eventDate < $today) {
+                                        $status = 'Sudah Lewat';
+                                        $textClass = 'text-muted';
+                                    } elseif ($eventDate > $today) {
+                                        $status = 'Akan Datang';
+                                        $textClass = 'text-primary';
+                                    } else {
+                                        $status = 'Sedang Berlangsung';
+                                        $textClass = 'text-success';
+                                    }
+                                ?>
+                                    <div class="event-item">
+                                        <h5><?= $event['title'] ?></h5>
+                                        <p class="<?= $textClass ?>">Status: <?= $status ?></p>
+                                        <p class="<?= $textClass ?>">Tanggal: <?= date('d/m/Y', strtotime($event['date'])) ?></p>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-2 mx-2">
+                    <div class="card2 text-center">
+                        <div class="card-body">
+                            <i class="bi bi-camera-reels-fill fs-2 text-light"></i>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-2 mx-2">
-                    <div class="card text-center">
+                    <div class="card3 text-center">
                         <div class="card-body">
-                            <i class="bi bi-chat-left-dots fs-2 text-primary"></i>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2 mx-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <i class="bi bi-geo-alt fs-2 text-primary"></i>
+                            <i class="bi bi-geo-alt-fill fs-2 text-light"></i>
                         </div>
                     </div>
                 </div>

@@ -144,6 +144,33 @@
 
 <script>
     // Add event listener for delete buttons
+    document.querySelectorAll('.delete-event').forEach(button => {
+        button.addEventListener('click', function() {
+            // Get event ID
+            const eventId = this.getAttribute('data-id');
+
+            // Show Sweet Alert confirmation
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to delete route for event
+                    window.location.href = '<?= base_url("panel/event/delete/") ?>' + eventId;
+                }
+            });
+        });
+    });
+</script>
+
+
+<script>
+    // Add event listener for delete buttons
     document.querySelectorAll('.delete-news').forEach(button => {
         button.addEventListener('click', function() {
             // Get news ID

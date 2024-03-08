@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\EventModel;
 use App\Models\NewsModel;
 use App\Models\ProductCatModel;
 use App\Models\ProductModel;
@@ -17,6 +18,9 @@ class Home extends BaseController
 
         $productModel = new ProductModel();
         $productData = $productModel->findAll();
+
+        $eventModel = new EventModel();
+        $eventData = $eventModel->findAll();
 
         $userModel = new User();
         $newsWithUserNames = [];
@@ -43,6 +47,7 @@ class Home extends BaseController
 
         $data = [
             'news' => $newsWithUserNames,
+            'events' => $eventData,
             'products' => $productsWithSellerNames
         ];
 
@@ -61,16 +66,19 @@ class Home extends BaseController
         $sellerModel = new SellerModel();
         $categoryProductModel = new ProductCatModel();
 
+        $search = $this->request->getGet('search');
         $keyword = $this->request->getGet('keyword');
         $sellerId = $this->request->getGet('seller');
         $categoryId = $this->request->getGet('category');
 
         $productsQuery = $productModel->orderBy('id', 'DESC');
-
-        if (!empty($keyword)) {
-            $productsQuery->like('product_name', $keyword);
+        if (!empty($search)) {
+            $productsQuery->like('name', $search);
         }
-
+        if (!empty($keyword)) {
+            $productsQuery->like('name', $keyword);
+        }
+        // dd($keyword);
         if (!empty($sellerId)) {
             $productsQuery->where('seller_id', $sellerId);
         }
@@ -80,6 +88,7 @@ class Home extends BaseController
         }
 
         $products = $productsQuery->paginate(8);
+        // dd($products);
         $sellers = $sellerModel->findAll();
         $categories = $categoryProductModel->findAll();
 
@@ -166,6 +175,4 @@ class Home extends BaseController
             'pager' => $pager
         ]);
     }
-
-    
 }

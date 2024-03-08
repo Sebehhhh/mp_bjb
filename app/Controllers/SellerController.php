@@ -119,12 +119,11 @@ class SellerController extends BaseController // Adjusted class name
                 return redirect()->back()->withInput()->with('errors', $validation->getErrors());
             }
         } else {
-            // If no new picture is uploaded, keep the existing picture name
-            $sellerModel = new SellerModel(); // Adjusted model
+
+            $sellerModel = new SellerModel();
             $seller = $sellerModel->find($id);
             $newPictureName = $seller['picture'];
 
-            // Validate input data except for the picture when no new picture is uploaded
             $validation = \Config\Services::validation();
             $validation->setRules([
                 'name' => 'required',
@@ -138,18 +137,16 @@ class SellerController extends BaseController // Adjusted class name
             }
         }
 
-        // Update data in the database using the model
-        $sellerModel = new SellerModel(); // Adjusted model
+        $sellerModel = new SellerModel();
         $sellerModel->update($id, [
             'name' => $name,
             'kode' => $code,
             'serial' => $serial,
-            'picture' => $newPictureName, // Save only the name of the picture
-            'description' => $description, // Save the description
-            'updated_by' => $updatedBy // Set updated_by with user_id from session
+            'picture' => $newPictureName,
+            'description' => $description,
+            'updated_by' => $updatedBy
         ]);
 
-        // Set success alert message
         $this->setFlashAlert('success', 'Success', 'Seller has been updated successfully.');
 
         return redirect()->back();

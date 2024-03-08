@@ -60,3 +60,9 @@ $routes->get('panel/product', 'ProductController::index');
 $routes->post('panel/product/add', 'ProductController::store');
 $routes->post('panel/product/update/(:num)', 'ProductController::update/$1');
 $routes->get('panel/product/delete/(:num)', 'ProductController::delete/$1');
+
+// EVENT
+$routes->get('panel/event', 'EventController::index');
+$routes->post('panel/event/add', 'EventController::store');
+$routes->post('panel/event/update/(:num)', 'EventController::update/$1');
+$routes->get('panel/event/delete/(:num)', 'EventController::delete/$1');

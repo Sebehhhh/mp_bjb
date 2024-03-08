@@ -28,9 +28,11 @@
                 <li class="has-submenu ">
                     <a href="<?= base_url('panel/news'); ?>"><i class="mdi mdi-newspaper"></i>News</a>
                 </li>
-
                 <li class="has-submenu ">
                     <a href="<?= base_url('panel/product'); ?>"><i class="mdi mdi-food"></i>Products</a>
+                </li>
+                <li class="has-submenu ">
+                    <a href="<?= base_url('panel/event'); ?>"><i class="mdi mdi-calendar-check"></i>Event</a>
                 </li>
 
             </ul><!-- End navigation menu -->
