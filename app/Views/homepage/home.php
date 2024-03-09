@@ -97,7 +97,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="video-container">
-                                    <iframe id="youtubeVideo" src="https://www.youtube.com/embed/tlkfc_uQ8oQ?autoplay=1&mute=0" frameborder="0" allowfullscreen></iframe>
+                                    <iframe id="youtubeVideo" src="https://www.youtube.com/embed/tlkfc_uQ8oQ?mute=0" frameborder="0" allowfullscreen></iframe>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -106,6 +106,7 @@
                         </div>
                     </div>
                 </div>
+
 
 
 
