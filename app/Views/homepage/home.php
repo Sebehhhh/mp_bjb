@@ -81,18 +81,58 @@
 
                 <div class="col-md-2 mx-2">
                     <div class="card2 text-center">
-                        <div class="card-body">
+                        <div class="card-body" onclick="showModal()">
                             <i class="bi bi-camera-reels-fill fs-2 text-light"></i>
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal -->
+                <div class="modal" tabindex="-1" id="eventModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Judul Event</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="video-container">
+                                    <iframe id="youtubeVideo" src="https://www.youtube.com/embed/tlkfc_uQ8oQ?autoplay=1&mute=0" frameborder="0" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="stopVideo()">Tutup</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
                 <div class="col-md-2 mx-2">
-                    <div class="card3 text-center">
+                    <div class="card3 text-center" onclick="showModal3()">
                         <div class="card-body">
                             <i class="bi bi-geo-alt-fill fs-2 text-light"></i>
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Taman Murjani Banjarbaru</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="<?= base_url('asset/img/festival.jpeg'); ?>" class="img-fluid" style="width: 100%;" alt="Gambar">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-3">
                 </div>
             </div>

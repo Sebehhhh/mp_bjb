@@ -58,6 +58,19 @@
     </script>
 
     <script>
+        function showModal() {
+            var modal = new bootstrap.Modal(document.getElementById('eventModal'));
+            modal.show();
+        }
+    </script>
+
+    <script>
+        function showModal3() {
+            $('#imageModal').modal('show');
+        }
+    </script>
+
+    <script>
         $(document).ready(function() {
             $(".mobile-navbar .list").click(function(event) {
                 event.preventDefault(); // Mencegah perilaku default dari link
