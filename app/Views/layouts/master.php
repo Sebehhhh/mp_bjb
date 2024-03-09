@@ -49,18 +49,31 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-    <script>
-        function showModal(seller, sellerPicture) {
-            document.getElementById('seller').innerText = 'Seller: ' + seller;
-            document.getElementById('sellerPicture').src = '<?= base_url("uploads/sellers/") ?>' + sellerPicture;
-            $('#productModal').modal('show');
-        }
-    </script>
 
     <script>
         function showModal() {
             var modal = new bootstrap.Modal(document.getElementById('eventModal'));
             modal.show();
+        }
+    </script>
+
+    <script>
+        function showModal2(sellerName, sellerPicture) {
+            // Set modal content based on the clicked item
+            document.getElementById('seller').innerText = 'Seller: ' + sellerName;
+
+            // Mendapatkan base URL
+            var baseUrl = '<?= base_url(); ?>';
+
+            // Menggabungkan base URL dengan sellerPicture
+            var fullSellerPictureUrl = baseUrl + 'uploads/sellers/' + sellerPicture;
+
+            // Mengatur src dari elemen gambar
+            document.getElementById('seller_picture').src = fullSellerPictureUrl;
+
+            // Show the modal
+            var myModal = new bootstrap.Modal(document.getElementById('productModal'));
+            myModal.show();
         }
     </script>
 

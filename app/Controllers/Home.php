@@ -98,6 +98,7 @@ class Home extends BaseController
             $product['seller_name'] = $sellerData['name'];
             $product['seller_picture'] = $sellerData['picture'];
             $product['category_name'] = $categoryProductData['name'];
+            // dd($product);
         }
         $pager = $productModel->pager;
 

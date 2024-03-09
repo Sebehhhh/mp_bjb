@@ -49,7 +49,7 @@
                     <div class="row g-4 justify-content-center">
                         <div class="row">
                             <?php foreach ($products as $product) { ?>
-                                <div class="col-md-6 col-lg-6 col-xl-3 col-6 mb-2" onclick="showModal('<?= $product['seller_name']; ?>', '<?= $product['seller_picture']; ?>')">
+                                <div class="col-md-6 col-lg-6 col-xl-3 col-6 mb-2" onclick="showModal2('<?= $product['seller_name']; ?>', '<?= $product['seller_picture']; ?>')">
                                     <div class="rounded position-relative fruite-item">
                                         <div class="fruite-img">
                                             <img src="<?= base_url('uploads/products/' . $product['picture']); ?>" class="img-fluid w-100 rounded-top" alt="<?= $product['name']; ?>">
@@ -66,14 +66,14 @@
 
                             <!-- Modal -->
                             <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="productModalLabel">Product Details</h5>
+                                            <h5 class="modal-title" id="productModalLabel">Detail Stand</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <img src="" id="sellerPicture" class="img-fluid" alt="Seller Picture">
+                                            <img src="" id="seller_picture" class="img-fluid" alt="Seller Picture">
                                             <p id="seller"></p>
                                         </div>
                                         <div class="modal-footer">
@@ -82,6 +82,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
 

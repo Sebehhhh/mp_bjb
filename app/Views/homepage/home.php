@@ -42,7 +42,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Event List</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Daftar Acara</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -92,7 +92,7 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Judul Event</h5>
+                                <h5 class="modal-title">Event</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -158,22 +158,19 @@
         <div class="owl-carousel vegetable-carousel justify-content-center">
             <?php foreach ($products as $product) : ?>
                 <div class="item">
-                    <a href="#" class="text-decoration-none">
-                        <div class="border border-primary rounded position-relative vesitable-item">
-                            <div class="vesitable-img square-menu">
-                                <!-- Mengambil gambar produk dari direktori public -->
-                                <img src="<?= base_url('uploads/products/' . $product['picture']); ?>" alt="<?= $product['name']; ?>">
-                            </div>
-                            <!-- Gunakan class bg-primary untuk menampilkan bahwa ini adalah produk -->
-                            <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">A<?= $product['seller_kode']; ?></div>
-                            <div class="p-4 rounded-bottom">
-                                <h4><b class="text-light" style="font-size: 12px;"><?= $product['name']; ?></b></h4>
-                                <p class="mb-0 text-light" style="font-size: 8px;">Price: <?= $product['price']; ?></p>
-                                <p class="mb-0 text-light" style="font-size: 8px;">Seller: <?= $product['seller_name']; ?></p>
-                                <!-- Anda bisa menambahkan informasi lainnya tentang produk di sini -->
-                            </div>
+                    <div class="border border-primary rounded position-relative vesitable-item">
+                        <div class="vesitable-img square-menu">
+                            <img src="<?= base_url('uploads/products/' . $product['picture']); ?>" alt="<?= $product['name']; ?>">
                         </div>
-                    </a>
+                        <!-- Gunakan class bg-primary untuk menampilkan bahwa ini adalah produk -->
+                        <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">A<?= $product['seller_kode']; ?></div>
+                        <div class="p-4 rounded-bottom">
+                            <h4><b class="text-light" style="font-size: 16px;"><?= $product['name']; ?></b></h4>
+                            <p class="mb-0 text-light" style="font-size: 10px;">Price: <?= $product['price']; ?></p>
+                            <p class="mb-0 text-light" style="font-size: 10px;">Seller: <?= $product['seller_name']; ?></p>
+                            <!-- Anda bisa menambahkan informasi lainnya tentang produk di sini -->
+                        </div>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -200,9 +197,9 @@
                             <!-- Gunakan class bg-primary untuk menampilkan bahwa ini adalah berita -->
                             <div class="text-white bg-primary px-3 py-1 rounded position-absolute" style="top: 10px; right: 10px;">News</div>
                             <div class="p-4 rounded-bottom">
-                                <h4><b class="text-light" style="font-size: 12px;"><?= $newsItem['title']; ?></b></h4>
+                                <h4><b class="text-light" style="font-size: 16px;"><?= $newsItem['title']; ?></b></h4>
                                 <!-- <p class="mb-0 text-light"><?= $newsItem['content']; ?></p> -->
-                                <p class="mb-0 text-light" style="font-size: 8px;">Author: <?= $newsItem['user_name']; ?></p>
+                                <p class="mb-0 text-light" style="font-size: 10px;">Author: <?= $newsItem['user_name']; ?></p>
                                 <!-- Anda bisa menambahkan informasi lainnya tentang berita di sini -->
                             </div>
                         </div>
@@ -222,10 +219,11 @@
         <div class="row g-4 align-items-center">
             <div class="col-lg-6">
                 <div class="py-4">
-                    <h1 class="display-3 text-white">Discover Ramadan Bazaar</h1>
-                    <p class="fw-normal display-3 text-white mb-4">at Banjarbaru City</p>
-                    <p class="mb-4 text-light">Explore a wide range of delicious foods and refreshing beverages at our marketplace during the Ramadan festival in Banjarbaru City.</p>
-                    <a href="#" class="banner-btn btn border-2 border-white rounded-pill text-light py-3 px-5">EXPLORE</a>
+                    <h1 class="display-3 text-white">Temukan Pesona Festival Ramadan</h1>
+                    <p class="fw-normal display-3 text-white mb-4">di Kota Banjarbaru</p>
+                    <p class="mb-4 text-light">
+                        Jelajahi beragam makanan lezat dan minuman segar di kedai kami selama festival Ramadan di Kota Banjarbaru.</p>
+                    <a href="#" class="banner-btn btn border-2 border-white rounded-pill text-light py-3 px-5">JELAJAHI</a>
                 </div>
             </div>
             <div class="col-lg-6">

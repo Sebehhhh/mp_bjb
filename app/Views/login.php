@@ -37,9 +37,9 @@
                             <div class="card">
                                 <div class="card-body">
                                     <div class="text-center pt-3">
-                                        <a href="#">
-                                            <img src="<?= base_url('assets/images/logo-h-lg.png'); ?>" alt="logo" height="22" />
-                                        </a>
+                                        <!-- <a href="#">
+                                            <img src="<?= base_url('asset/img/pasar_wadai.png'); ?>" alt="logo" height="200px" width="300px" />
+                                        </a> -->
                                     </div>
                                     <?php if (session()->has('errors')) : ?>
                                         <div class="alert alert-danger" role="alert">
@@ -72,11 +72,11 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group m-t-10 mb-0 row">
+                                            <!-- <div class="form-group m-t-10 mb-0 row">
                                                 <div class="col-sm-5 m-t-20">
                                                     <a href="<?= base_url('register'); ?>" class="text-muted"><i class="mdi mdi-account-circle"></i> Create an account ?</a>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </form>
                                     </div>
 
