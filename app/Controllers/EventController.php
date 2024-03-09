@@ -112,7 +112,7 @@ class EventController extends BaseController
                 'description' => 'required',
                 'date' => 'required',
                 'link' => 'required',
-                'thumbnail' => 'uploaded[thumbnail]|max_size[thumbnail,2048]|is_image[thumbnail]|mime_in[thumbnail,image/jpg,image/jpeg,image/png]'
+                // 'thumbnail' => 'uploaded[thumbnail]|max_size[thumbnail,2048]|is_image[thumbnail]|mime_in[thumbnail,image/jpg,image/jpeg,image/png]'
             ]);
 
             if (!$validation->withRequest($this->request)->run()) {

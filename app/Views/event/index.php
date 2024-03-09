@@ -101,7 +101,7 @@
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="date">Date <span class="text-danger">*</span></label>
-                                                            <input type="date" class="form-control" name="date" value="<?= $event['title'] ?>" required>
+                                                            <input type="date" class="form-control" name="date" value="<?= $event['date'] ?>" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="link">Link<span class="text-danger">*</span></label>
