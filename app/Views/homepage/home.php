@@ -68,9 +68,11 @@
                                         <h5><?= $event['title'] ?></h5>
                                         <p class="<?= $textClass ?>">Status: <?= $status ?></p>
                                         <p class="<?= $textClass ?>">Tanggal: <?= date('d/m/Y', strtotime($event['date'])) ?></p>
+                                        <a href="<?= $event['link'] ?>" class="btn btn-primary">Link Event</a>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
+
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
