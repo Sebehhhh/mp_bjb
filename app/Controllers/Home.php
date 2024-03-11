@@ -26,7 +26,11 @@ class Home extends BaseController
         $newsWithUserNames = [];
         foreach ($newsData as $news) {
             $userData = $userModel->find($news['created_by']);
-            $news['user_name'] = $userData['name'];
+            if ($userData) {
+                $news['user_name'] = $userData['name'];
+            } else {
+                $news['user_name'] = 'Anonymous';
+            }
             $newsWithUserNames[] = $news;
         }
 
