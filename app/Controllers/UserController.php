@@ -31,7 +31,7 @@ class UserController extends BaseController
 
         // Ambil semua role
         $roleModel = new RoleModel();
-        $users = $User->findAll();
+        $users = $User->withDeleted()->findAll();
 
         // Loop through each user to fetch role name
         foreach ($users as &$user) {
