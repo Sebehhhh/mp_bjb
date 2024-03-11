@@ -13,6 +13,7 @@ $routes->get('/about', 'Home::about');
 $routes->get('/allProducts', 'Home::allProducts');
 $routes->get('/news', 'Home::news');
 $routes->get('/allNews', 'Home::allNews');
+$routes->get('/video', 'Home::video');
 
 // AUTH
 // $routes->get('register', 'AuthController::register');
@@ -66,3 +67,9 @@ $routes->get('panel/event', 'EventController::index');
 $routes->post('panel/event/add', 'EventController::store');
 $routes->post('panel/event/update/(:num)', 'EventController::update/$1');
 $routes->get('panel/event/delete/(:num)', 'EventController::delete/$1');
+
+// EVENT
+$routes->get('panel/video', 'VideoController::index');
+$routes->post('panel/video/add', 'VideoController::store');
+$routes->post('panel/video/update/(:num)', 'VideoController::update/$1');
+$routes->get('panel/video/delete/(:num)', 'VideoController::delete/$1');

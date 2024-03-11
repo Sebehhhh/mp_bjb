@@ -68,7 +68,7 @@
                                         <h5><?= $event['title'] ?></h5>
                                         <p class="<?= $textClass ?>">Status: <?= $status ?></p>
                                         <p class="<?= $textClass ?>">Tanggal: <?= date('d/m/Y', strtotime($event['date'])) ?></p>
-                                        <a href="<?= $event['link'] ?>" class="btn btn-primary">Link Event</a>
+                                        <a href="<?= $event['link'] ?>">Link Event</a>
                                     </div>
                                 <?php endforeach; ?>
                             </div>
@@ -82,35 +82,14 @@
                 </div>
 
                 <div class="col-md-2 mx-2">
-                    <div class="card2 text-center">
-                        <div class="card-body" onclick="showModal()">
-                            <i class="bi bi-camera-reels-fill fs-2 text-light"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal" tabindex="-1" id="eventModal">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Event</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="video-container">
-                                    <iframe id="youtubeVideo" src="https://www.youtube.com/embed/tlkfc_uQ8oQ?mute=0" frameborder="0" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="stopVideo()">Tutup</button>
+                    <a href="<?= base_url('video'); ?>" class="text-decoration-none">
+                        <div class="card2 text-center">
+                            <div class="card-body">
+                                <i class="bi bi-camera-reels-fill fs-2 text-light"></i>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-
-
-
 
 
                 <div class="col-md-2 mx-2">
@@ -214,9 +193,8 @@
 <!-- News End -->
 
 
-
 <!-- Banner Section Start-->
-<div class="container-fluid banner selected my-5">
+<div class="container-fluid banner selected my-5 mb-5">
     <div class="container py-5">
         <div class="row g-4 align-items-center">
             <div class="col-lg-6">
@@ -228,16 +206,24 @@
                     <a href="#" class="banner-btn btn border-2 border-white rounded-pill text-light py-3 px-5">JELAJAHI</a>
                 </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 mb-5">
                 <div class="position-relative square-wrapper">
-                    <img src="<?= base_url('asset/img/fest.jpg'); ?>" class="img-fluid w-100 rounded" alt="">
-
+                    <?php if (!empty($videos)) : ?>
+                        <?php
+                        $video_link = $videos[0]['link'];
+                        // Extract video ID from YouTube link
+                        preg_match('/(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video_link, $matches);
+                        $youtube_id = $matches[1];
+                        ?>
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/<?= $youtube_id; ?>" frameborder="0" allowfullscreen style="border-radius: 15px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);"></iframe>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Banner Section End -->
+
 
 
 

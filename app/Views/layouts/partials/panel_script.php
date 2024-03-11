@@ -92,6 +92,33 @@
 
 <script>
     // Add event listener for delete buttons
+    document.querySelectorAll('.delete-video').forEach(button => {
+        button.addEventListener('click', function() {
+            // Get video ID
+            const videoId = this.getAttribute('data-id');
+
+            // Show Sweet Alert confirmation
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Redirect to delete route
+                    window.location.href = '<?= base_url("panel/video/delete/") ?>' + videoId;
+                }
+            });
+        });
+    });
+</script>
+
+
+<script>
+    // Add event listener for delete buttons
     document.querySelectorAll('.delete-category').forEach(button => {
         button.addEventListener('click', function() {
             // Get category ID

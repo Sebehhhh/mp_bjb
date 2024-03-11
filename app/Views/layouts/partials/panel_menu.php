@@ -34,6 +34,9 @@
                 <li class="has-submenu ">
                     <a href="<?= base_url('panel/event'); ?>"><i class="mdi mdi-calendar-check"></i>Event</a>
                 </li>
+                <li class="has-submenu ">
+                    <a href="<?= base_url('panel/video'); ?>"><i class="mdi mdi-video"></i>Video</a>
+                </li>
 
             </ul><!-- End navigation menu -->
         </div> <!-- end #navigation -->

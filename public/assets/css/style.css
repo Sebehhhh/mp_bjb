@@ -3168,6 +3168,27 @@ select.form-control:not([size]):not([multiple]),
   border-bottom: 16px solid #3f51b5;
 }
 
+/* Gaya untuk status badge */
+.status-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* Warna hijau untuk status on */
+.status-badge.green {
+  background-color: green;
+  color: white;
+}
+
+/* Warna merah untuk status off */
+.status-badge.red {
+  background-color: red;
+  color: white;
+}
+
+
 /* ==============
   Account Pages
 ===================*/

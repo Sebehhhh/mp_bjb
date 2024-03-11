@@ -8,6 +8,7 @@ use App\Models\ProductCatModel;
 use App\Models\ProductModel;
 use App\Models\SellerModel;
 use App\Models\User;
+use App\Models\VideoModel;
 
 class Home extends BaseController
 {
@@ -45,14 +46,20 @@ class Home extends BaseController
             return $a['seller_kode'] <=> $b['seller_kode'];
         });
 
+        // Mendapatkan data video dengan status "showed" = "on"
+        $videoModel = new VideoModel();
+        $videoData = $videoModel->where('showed', 'on')->findAll();
+
         $data = [
             'news' => $newsWithUserNames,
             'events' => $eventData,
-            'products' => $productsWithSellerNames
+            'products' => $productsWithSellerNames,
+            'videos' => $videoData // Menambahkan data video ke dalam array data
         ];
 
         return view('homepage/home', $data);
     }
+
 
 
     public function about()
@@ -136,6 +143,20 @@ class Home extends BaseController
         // Kirim data berita ke tampilan berita
         return view('homepage/news', ['newsItem' => $newsItem]);
     }
+
+    public function video()
+    {
+        // Tangkap ID dari parameter query string
+        $videoId = $this->request->getGet('id');
+
+        // Cari data video berdasarkan ID
+        $videoModel = new VideoModel();
+        $videoItem = $videoModel->find($videoId);
+
+        // Kirim data video ke tampilan video
+        return view('homepage/video', ['videoItems' => $videoItem]);
+    }
+
 
     public function allNews()
     {
